@@ -5,6 +5,8 @@ block vars
 block content
     ul.nav.nav-tabs
       li.active
+        a(data-toggle='tab', href='#myinfo') My Information
+      li
         a(data-toggle='tab', href='#myguardian') My Guardian
       li
         a(data-toggle='tab', href='#mydoctor') My Doctor
@@ -29,187 +31,359 @@ block content
       li
         a(data-toggle='tab', href='#labresults') Lab Results
     .tab-content
-      #myguardian.tab-pane.fade.in.active
+     
+
+      #myinfo.tab-pane.fade
         br
         .row
           .col-lg-12
             .panel.panel-info
-              .panel-heading
-                | Basic Form Elements
+              //.panel-heading
+               // | Basic Form Elements
               .panel-body
                 .row
                   .col-lg-6
                     form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
-                        label Text Input
+                        label First Name
                         input.form-control
-                        p.help-block Example block-level help text here.
                       .form-group
-                        label Text Input with Placeholder
-                        input.form-control(placeholder='Enter text')
+                        label Last Name
+                        input.form-control
                       .form-group
-                        label Static Control
-                        p.form-control-static email@example.com
-                      .form-group
-                        label File input
-                        input(type='file')
-                      .form-group
-                        label Text area
-                        textarea.form-control(rows='3')
-                      .form-group
-                        label Checkboxes
-                        .checkbox
-                          label
-                            input(type='checkbox', value='')
-                            | Checkbox 1
-                        .checkbox
-                          label
-                            input(type='checkbox', value='')
-                            | Checkbox 2
-                        .checkbox
-                          label
-                            input(type='checkbox', value='')
-                            | Checkbox 3
-                      .form-group
-                        label Inline Checkboxes
-                        label.checkbox-inline
-                          input(type='checkbox')
-                          | 1
-                        label.checkbox-inline
-                          input(type='checkbox')
-                          | 2
-                        label.checkbox-inline
-                          input(type='checkbox')
-                          | 3
-                      .form-group
-                        label Radio Buttons
-                        .radio
-                          label
-                            input#optionsRadios1(type='radio', name='optionsRadios', value='option1', checked='')
-                            | Radio 1
-                        .radio
-                          label
-                            input#optionsRadios2(type='radio', name='optionsRadios', value='option2')
-                            | Radio 2
-                        .radio
-                          label
-                            input#optionsRadios3(type='radio', name='optionsRadios', value='option3')
-                            | Radio 3
-                      .form-group
-                        label Inline Radio Buttons
-                        label.radio-inline
-                          input#optionsRadiosInline1(type='radio', name='optionsRadiosInline', value='option1', checked='')
-                          | 1
-                        label.radio-inline
-                          input#optionsRadiosInline2(type='radio', name='optionsRadiosInline', value='option2')
-                          | 2
-                        label.radio-inline
-                          input#optionsRadiosInline3(type='radio', name='optionsRadiosInline', value='option3')
-                          | 3
-                      .form-group
-                        label Selects
+                        label Gender
                         select.form-control
-                          option 1
-                          option 2
-                          option 3
-                          option 4
-                          option 5
+                          option Male
+                          option Female
+                          option Uknown destination
                       .form-group
-                        label Multiple Selects
-                        select.form-control(multiple='')
-                          option 1
-                          option 2
-                          option 3
-                          option 4
-                          option 5
+                        label Marital Status
+                        select.form-control
+                          option Married
+                          option Divorced
+                          option Single dad
+                          option Black widow
+                          option Forever alone
+                      .form-group
+                        label Address
+                        input.form-control
+                      .form-group
+                        label Telephone
+                        input.form-control
+                      .form-group
+                        label Birthday
+                        input.form-control
+                      .form-group
+                        label Language
+                        input.form-control
                       button.btn.btn-default(type='submit') Submit Button
                       button.btn.btn-default(type='reset') Reset Button
-                  // /.col-lg-6 (nested)
+       #myguardian.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
                   .col-lg-6
-                    h1 Disabled Form States
-                    form(role='form', lpformnum='2')
-                      fieldset(disabled='')
-                        .form-group
-                          label(for='disabledSelect') Disabled input
-                          input#disabledInput.form-control(type='text', placeholder='Disabled input', disabled='')
-                        .form-group
-                          label(for='disabledSelect') Disabled select menu
-                          select#disabledSelect.form-control
-                            option Disabled select
-                        .checkbox
-                          label
-                            input(type='checkbox')
-                            | Disabled Checkbox
-                        button.btn.btn-primary(type='submit') Disabled Button
-                    h1 Form Validation States
-                    form(role='form', lpformnum='3', _lpchecked='1')
-                      .form-group.has-success
-                        label.control-label(for='inputSuccess') Input with success
-                        input#inputSuccess.form-control(type='text', style='background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;')
-                      .form-group.has-warning
-                        label.control-label(for='inputWarning') Input with warning
-                        input#inputWarning.form-control(type='text')
-                      .form-group.has-error
-                        label.control-label(for='inputError') Input with error
-                        input#inputError.form-control(type='text')
-                    h1 Input Groups
-                    form(role='form', lpformnum='4')
-                      .form-group.input-group
-                        span.input-group-addon @
-                        input.form-control(type='text', placeholder='Username', style='background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;')
-                      .form-group.input-group
-                        input.form-control(type='text')
-                        span.input-group-addon .00
-                      .form-group.input-group
-                        span.input-group-addon
-                          i.fa.fa-eur
-                        input.form-control(type='text', placeholder='Font Awesome Icon')
-                      .form-group.input-group
-                        span.input-group-addon $
-                        input.form-control(type='text')
-                        span.input-group-addon .00
-                      .form-group.input-group
-                        input.form-control(type='text')
-                        span.input-group-btn
-                          button.btn.btn-default(type='button')
-                            i.fa.fa-search
-                  // /.col-lg-6 (nested)
-                // /.row (nested)
-              // /.panel-body
-            // /.panel
-
-
-
-      #mydoctor.tab-pane.fade
-        h3 My Doctor
-        p Some content in menu 2.
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Role
+                        input.form-control
+                      .form-group
+                        label First Name
+                        input.form-control
+                      .form-group
+                        label Last Name
+                        input.form-control
+                      .form-group
+                        label Address
+                        input.form-control
+                      .form-group
+                        label Telephone
+                        input.form-control
+                      .form-group
+                        label Language
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+       #mydoctor.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input.form-control
+                      .form-group
+                        label Address
+                        input.form-control
+                      .form-group
+                        label Telephone
+                        input.form-control
+                      .form-group
+                        label Speciality
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
       #resume.tab-pane.fade
-        h3 Resume
-        p Some content in menu 1.
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Currently
+                        input.form-control
+                      .form-group
+                        label Soon
+                        input.form-control
+                      .form-group
+                        label Blood Pressure
+                        input.form-control
+                      .form-group
+                        label Size
+                        input.form-control
+                      .form-group
+                        label Height
+                        input.form-control
+                      .form-group
+                        label Life history
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
       #allergies.tab-pane.fade
-        h3 Allergies
-        p Some content in menu 2.
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input.form-control
+                      .form-group
+                        label Reaction
+                        input.form-control
+                      .form-group
+                        label Severity
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
       #immunizations.tab-pane.fade
-        h3 Immunizations
-        p Some content in menu 1.
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Type
+                        input.form-control
+                      .form-group
+                        label Dose
+                        input.form-control
+                      .form-group
+                        label Instructions
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
       #medication.tab-pane.fade
-        h3 Medication
-        p Some content in menu 2.
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input.form-control
+                      .form-group
+                        label Type
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Dose
+                        input.form-control
+                      .form-group
+                        label Rate
+                        input.form-control
+                      .form-group
+                        label Instructions
+                        input.form-control
+                      .form-group
+                        label Prescriber
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
       #procedures.tab-pane.fade
-        h3 Procedures
-        p Some content in menu 2.
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Procedure
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Provider
+                        input.form-control
+                      .form-group
+                        label Address
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
       #problemlist.tab-pane.fade
-        h3 Problem List
-        p Some content in menu 1.
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Observation
+                        input.form-control
+                      .form-group
+                        label Status
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Comments
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
       #familyhistory.tab-pane.fade
-        h3 Family History
-        p Some content in menu 2.
-      #ecounters.tab-pane.fade
-        h3 Encounters
-        p Some content in menu 1.
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Role
+                        input.form-control
+                      .form-group
+                        label Type
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Informations
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #encounters.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Encounter
+                        input.form-control
+                      .form-group
+                        label Provider
+                        input.form-control
+                      .form-group
+                        label Location
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
       #planofcare.tab-pane.fade
-        h3 Plan of care
-        p Some content in menu 2.
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Planned Activity
+                        input.form-control
+                      .form-group
+                        label Planned Date
+                        input.form-control
+                      .form-group
+                        label Instructions
+                        input.form-control
+                    button.btn.btn-default(type='submit') Submit Button
+                    button.btn.btn-default(type='reset') Reset Button
      #labresults.tab-pane.fade
-        h3 Lab Results
-        p Some content in menu 2.
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Details Results
+                        input.form-control
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button

@@ -1,23 +1,23 @@
 function fireInTheHole(e) {
   e.preventDefault();
   console.log("Boom Boom Boom");
-  // $.ajax({
-  //   url: WSURL + "summary",
-  //   data: {
-  //     format: "json"
-  //   },
-  //   dataType: "json",
-  //   error: function(error) {
-  //     console.log(error);
-  //   },
-  //   success: function(data) {
-  //     summaryData = data;
-  //     getMetaInfo().then(function() {
-  //       initMap();
-  //     });
-  //   },
-  //   type: "GET"
-  // });
+  $.ajax({
+    url: "http://localhost:4000/medical_record",
+    data: {
+      format: "json"
+    },
+    dataType: "json",
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      summaryData = data;
+      getMetaInfo().then(function() {
+        initMap();
+      });
+    },
+    type: "GET"
+  });
 }
 
 
@@ -526,25 +526,25 @@ function fireInTheHole(e) {
 //   return dfd.promise();
 // }
 
-// function getSummaryData() {
-//   $.ajax({
-//     url: WSURL + "summary",
-//     data: {
-//       format: "json"
-//     },
-//     dataType: "json",
-//     error: function(error) {
-//       console.log(error);
-//     },
-//     success: function(data) {
-//       summaryData = data;
-//       getMetaInfo().then(function() {
-//         initMap();
-//       });
-//     },
-//     type: "GET"
-//   });
-// }
+function getSummaryData() {
+  $.ajax({
+    url: WSURL + "summary",
+    data: {
+      format: "json"
+    },
+    dataType: "json",
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      summaryData = data;
+      getMetaInfo().then(function() {
+        initMap();
+      });
+    },
+    type: "GET"
+  });
+}
 
 
 // $(document).ready(function() {

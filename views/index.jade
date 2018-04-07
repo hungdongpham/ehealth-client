@@ -1,0 +1,38 @@
+
+- extends layout
+//- block vars
+//-   - var pageTitle = 'Disease Map - Home Page'
+//-   - var configLink = 'javascripts/config.js'
+//-   - var scriptLink = 'javascripts/scripts.js'
+//-   - var googleLibs = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBC_AVyQ4nBmVmhckBJMtWep9oAEbN9L1w&callback=getSummaryData'
+//- block content
+//-   .container.wrapper
+//-     .row
+//-       .col-xs-12.import-region
+//-         b Import your data to our site 
+//-         span.glyphicon.glyphicon-info-sign
+//-         button.btn.btn-default.btn-primary.import-btn(type='button')  Import
+//-     .row
+//-       .col-xs-12.col-md-2.filter-area
+//-         include filters
+//-       .col-xs-12.col-md-6.border-area
+//-         #googft-mapCanvas
+//-       .col-xs-12.col-md-4
+//-         include info
+//-   #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+//-     .modal-dialog(role='document')
+//-       .modal-content
+//-         .modal-header
+//-           button.close(type='button', data-dismiss='modal', aria-label='Close')
+//-             span(aria-hidden='true') ×
+//-           h4#myModalLabel.modal-title Import your data
+//-         .modal-body
+//-           .row
+//-             .col-xs-12
+//-               .fileinput.fileinput-new(data-provides='fileinput')
+//-                 span.btn.btn-default.btn-file
+//-                   span Choose file
+//-                   input(type='file')
+//-         .modal-footer
+//-           button.btn.btn-default(type='button', data-dismiss='modal') Close
+//-           button.btn.btn-primary(type='button') Import

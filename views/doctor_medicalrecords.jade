@@ -1,0 +1,215 @@
+
+extends layout
+block vars
+  - var pageTitle = 'Medical Records'
+block content
+    ul.nav.nav-tabs
+      li.active
+        a(data-toggle='tab', href='#myguardian') My Guardian
+      li
+        a(data-toggle='tab', href='#mydoctor') My Doctor
+      li
+        a(data-toggle='tab', href='#resume') Resume
+      li
+        a(data-toggle='tab', href='#allergies') Allergies
+      li
+        a(data-toggle='tab', href='#immunizations') Immunizations
+      li
+        a(data-toggle='tab', href='#medication') Medication
+      li
+        a(data-toggle='tab', href='#procedures') Procedures
+      li
+        a(data-toggle='tab', href='#problemlist') Problem List
+      li
+        a(data-toggle='tab', href='#familyhistory') Family History
+      li
+        a(data-toggle='tab', href='#encounters') Encounters
+      li
+        a(data-toggle='tab', href='#planofcare') Plan of care
+      li
+        a(data-toggle='tab', href='#labresults') Lab Results
+    .tab-content
+      #myguardian.tab-pane.fade.in.active
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              .panel-heading
+                | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Text Input
+                        input.form-control
+                        p.help-block Example block-level help text here.
+                      .form-group
+                        label Text Input with Placeholder
+                        input.form-control(placeholder='Enter text')
+                      .form-group
+                        label Static Control
+                        p.form-control-static email@example.com
+                      .form-group
+                        label File input
+                        input(type='file')
+                      .form-group
+                        label Text area
+                        textarea.form-control(rows='3')
+                      .form-group
+                        label Checkboxes
+                        .checkbox
+                          label
+                            input(type='checkbox', value='')
+                            | Checkbox 1
+                        .checkbox
+                          label
+                            input(type='checkbox', value='')
+                            | Checkbox 2
+                        .checkbox
+                          label
+                            input(type='checkbox', value='')
+                            | Checkbox 3
+                      .form-group
+                        label Inline Checkboxes
+                        label.checkbox-inline
+                          input(type='checkbox')
+                          | 1
+                        label.checkbox-inline
+                          input(type='checkbox')
+                          | 2
+                        label.checkbox-inline
+                          input(type='checkbox')
+                          | 3
+                      .form-group
+                        label Radio Buttons
+                        .radio
+                          label
+                            input#optionsRadios1(type='radio', name='optionsRadios', value='option1', checked='')
+                            | Radio 1
+                        .radio
+                          label
+                            input#optionsRadios2(type='radio', name='optionsRadios', value='option2')
+                            | Radio 2
+                        .radio
+                          label
+                            input#optionsRadios3(type='radio', name='optionsRadios', value='option3')
+                            | Radio 3
+                      .form-group
+                        label Inline Radio Buttons
+                        label.radio-inline
+                          input#optionsRadiosInline1(type='radio', name='optionsRadiosInline', value='option1', checked='')
+                          | 1
+                        label.radio-inline
+                          input#optionsRadiosInline2(type='radio', name='optionsRadiosInline', value='option2')
+                          | 2
+                        label.radio-inline
+                          input#optionsRadiosInline3(type='radio', name='optionsRadiosInline', value='option3')
+                          | 3
+                      .form-group
+                        label Selects
+                        select.form-control
+                          option 1
+                          option 2
+                          option 3
+                          option 4
+                          option 5
+                      .form-group
+                        label Multiple Selects
+                        select.form-control(multiple='')
+                          option 1
+                          option 2
+                          option 3
+                          option 4
+                          option 5
+                      button.btn.btn-default(type='submit') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+                  // /.col-lg-6 (nested)
+                  .col-lg-6
+                    h1 Disabled Form States
+                    form(role='form', lpformnum='2')
+                      fieldset(disabled='')
+                        .form-group
+                          label(for='disabledSelect') Disabled input
+                          input#disabledInput.form-control(type='text', placeholder='Disabled input', disabled='')
+                        .form-group
+                          label(for='disabledSelect') Disabled select menu
+                          select#disabledSelect.form-control
+                            option Disabled select
+                        .checkbox
+                          label
+                            input(type='checkbox')
+                            | Disabled Checkbox
+                        button.btn.btn-primary(type='submit') Disabled Button
+                    h1 Form Validation States
+                    form(role='form', lpformnum='3', _lpchecked='1')
+                      .form-group.has-success
+                        label.control-label(for='inputSuccess') Input with success
+                        input#inputSuccess.form-control(type='text', style='background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;')
+                      .form-group.has-warning
+                        label.control-label(for='inputWarning') Input with warning
+                        input#inputWarning.form-control(type='text')
+                      .form-group.has-error
+                        label.control-label(for='inputError') Input with error
+                        input#inputError.form-control(type='text')
+                    h1 Input Groups
+                    form(role='form', lpformnum='4')
+                      .form-group.input-group
+                        span.input-group-addon @
+                        input.form-control(type='text', placeholder='Username', style='background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;')
+                      .form-group.input-group
+                        input.form-control(type='text')
+                        span.input-group-addon .00
+                      .form-group.input-group
+                        span.input-group-addon
+                          i.fa.fa-eur
+                        input.form-control(type='text', placeholder='Font Awesome Icon')
+                      .form-group.input-group
+                        span.input-group-addon $
+                        input.form-control(type='text')
+                        span.input-group-addon .00
+                      .form-group.input-group
+                        input.form-control(type='text')
+                        span.input-group-btn
+                          button.btn.btn-default(type='button')
+                            i.fa.fa-search
+                  // /.col-lg-6 (nested)
+                // /.row (nested)
+              // /.panel-body
+            // /.panel
+
+
+
+      #mydoctor.tab-pane.fade
+        h3 My Doctor
+        p Some content in menu 2.
+      #resume.tab-pane.fade
+        h3 Resume
+        p Some content in menu 1.
+      #allergies.tab-pane.fade
+        h3 Allergies
+        p Some content in menu 2.
+      #immunizations.tab-pane.fade
+        h3 Immunizations
+        p Some content in menu 1.
+      #medication.tab-pane.fade
+        h3 Medication
+        p Some content in menu 2.
+      #procedures.tab-pane.fade
+        h3 Procedures
+        p Some content in menu 2.
+      #problemlist.tab-pane.fade
+        h3 Problem List
+        p Some content in menu 1.
+      #familyhistory.tab-pane.fade
+        h3 Family History
+        p Some content in menu 2.
+      #ecounters.tab-pane.fade
+        h3 Encounters
+        p Some content in menu 1.
+      #planofcare.tab-pane.fade
+        h3 Plan of care
+        p Some content in menu 2.
+     #labresults.tab-pane.fade
+        h3 Lab Results
+        p Some content in menu 2.

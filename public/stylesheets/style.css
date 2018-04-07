@@ -1,0 +1,177 @@
+.navbar-brand{
+  height: 70px;
+}
+.navbar-brand img{
+  display: inline-block;
+}
+.branch-name{
+  padding-left: 10px;
+  font-weight: bold;
+}
+.navbar-top-links{
+  margin-top: 10px;
+}
+@media (min-width: 768px){
+  .sidebar{
+    margin-top: 71px;
+  }
+}
+
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.navbar-brand>img{
+  display: inline-block!important;
+  margin-right: 10px;
+}
+
+.contact-form {
+  margin-top: 50px;
+}
+
+.contact-form input, .contact-form textarea{
+  margin-bottom: 10px;
+}
+
+.our-team-region p{
+  padding-bottom: 50px;
+}
+
+.our-team-region img{
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.border-area{
+  margin-top: 30px;
+  border: 2px solid black;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: white;
+}
+.info-area{
+  padding-top: 30px;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 10px;
+}
+.filter-area{
+  padding-top: 30px;
+}
+.ul-info{
+  display: none;
+}
+.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+.go-detail{
+  float: right;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+.note-area ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+.map-gradient{
+  background: #00FF00;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-right: 10px;
+  opacity: 0.6;
+}
+.color-1{
+  background: #00D600;
+}
+.color-2{
+  background: #00AD00;
+}
+.color-3{
+  background: #008400;
+}
+.color-4{
+  background: #005C00;
+}
+.fileinput-new .btn-file{
+  width: 100%;
+}
+.design-by{
+  font-size: 9px;
+}
+.custom-brand b{
+  color:#42a640;
+}
+.import-region{
+  padding-top:20px;
+}
+
+.navbar-inverse {
+  background-color: #a3ccff !important;
+}
+
+.navbar-brand b{
+  color: #080808;
+}
+
+.annotation-label{
+  text-transform: capitalize;
+}
+
+.info-details .badge {
+  float: right;
+}
+
+.info-area{
+  padding: 10px;
+}
+
+.sum-info{
+  padding: 20px;
+}
+
+.panel-no-info{
+  margin-top: 20px;
+}
+
+.province-selection{
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.panel-no-info{
+  margin-left: 30px;
+}
+
+.syndrome-selection input {
+  margin-right: 10px!important;
+}
+
+.import-btn{
+  margin-left: 10px;
+}
+
+.filter-area span{
+ font-weight: bold;
+}
+
+.img-markers{
+  margin-right: 5px;
+}
+@media only screen and (min-width: 768px) {
+  .info-area{
+      margin-left: 30px;
+  }
+} */

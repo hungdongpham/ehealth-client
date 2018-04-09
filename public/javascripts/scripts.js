@@ -11,6 +11,7 @@ function fireInTheHole(e) {
       console.log(error);
     },
     success: function(data) {
+      console.log(data);
       summaryData = data;
       getMetaInfo().then(function() {
         initMap();
@@ -21,16 +22,751 @@ function fireInTheHole(e) {
 }
 
 
+function submitGuardian(e){
+  e.preventDefault();
+  let role = document.getElementById('guardian_role').value;
+  let first_name = document.getElementById('guardian_first_name').value;
+  let last_name = document.getElementById('guardian_last_name').value;
+  let address = document.getElementById('guardian_address').value;
+  let telephone = document.getElementById('guardian_telephone').value;
+  let language = document.getElementById('guardian_language').value;
+  let alert = document.getElementById('guardian_error');
+  alert.style.display = 'none';
+  if(!role || role.trim()==""){
+    alert.innerHTML = "Missing guardian role";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!first_name || first_name.trim()==""){
+    alert.innerHTML = "Missing guardian first name";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!last_name || last_name.trim()==""){
+    alert.innerHTML = "Missing guardian last name";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!address || address.trim()==""){
+    alert.innerHTML = "Missing guardian address";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!telephone || telephone.trim()==""){
+    alert.innerHTML = "Missing guardian telephone";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!language || language.trim()==""){
+    alert.innerHTML = "Missing guardian language";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      guardians:[
+        {
+          role,
+          first_name,
+          last_name,
+          address,
+          telephone,
+          language
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
 
 
+function submitDoctor(e){
+  e.preventDefault();
+  let name = document.getElementById('doctor_name').value;
+  let address = document.getElementById('doctor_address').value;
+  let telephone = document.getElementById('doctor_telephone').value;
+  let speciality = document.getElementById('doctor_speciality').value;
+  let alert = document.getElementById('doctor_error');
+  alert.style.display = 'none';
+  if(!name || name.trim()==""){
+    alert.innerHTML = "Missing doctor name";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!address || address.trim()==""){
+    alert.innerHTML = "Missing doctor address";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!telephone || telephone.trim()==""){
+    alert.innerHTML = "Missing doctor telephone";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!speciality || speciality.trim()==""){
+    alert.innerHTML = "Missing doctor speciality";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      doctors:[
+        {
+          name,
+          address,
+          telephone,
+          speciality
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
+
+function submitResume(e){
+  e.preventDefault();
+  let currently = document.getElementById('resume_currently').value;
+  let soon = document.getElementById('resume_soon').value;
+  let blood_pressure = document.getElementById('resume_blood_pressure').value;
+  let size = document.getElementById('resume_size').value;
+  let life_history = document.getElementById('resume_life_history').value;
+  let height = document.getElementById('resume_height').value;
+  let alert = document.getElementById('resume_error');
+  alert.style.display = 'none';
+  if(!currently || currently.trim()==""){
+    alert.innerHTML = "Missing currently";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!soon || soon.trim()==""){
+    alert.innerHTML = "Missing soon";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!blood_pressure || blood_pressure.trim()==""){
+    alert.innerHTML = "Missing blood pressure";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!size || size.trim()==""){
+    alert.innerHTML = "Missing size";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!height || height.trim()==""){
+    alert.innerHTML = "Missing height";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!life_history || life_history.trim()==""){
+    alert.innerHTML = "Missing doctor life history";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      resume:[
+        {
+          currently,
+          soon,
+          blood_pressure,
+          size,
+          height,
+          life_history
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
+
+function submitAllergy(e){
+  e.preventDefault();
+  let name = document.getElementById('allergy_name').value;
+  let reaction = document.getElementById('allergy_reaction').value;
+  let severity = document.getElementById('allergy_severity').value;
+  let alert = document.getElementById('allergy_error');
+  alert.style.display = 'none';
+  if(!name || name.trim()==""){
+    alert.innerHTML = "Missing allergy name";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!reaction || reaction.trim()==""){
+    alert.innerHTML = "Missing allergy reaction";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!severity || severity.trim()==""){
+    alert.innerHTML = "Missing allergy severity";
+    alert.style.display = 'block';
+    return;
+  }
 
 
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      allergies:[
+        {
+          name,
+          reaction,
+          severity
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
 
 
+function submitImmunization(e){
+  e.preventDefault();
+  let name = document.getElementById('immunization_name').value;
+  let date = document.getElementById('immunization_date').value;
+  let type = document.getElementById('immunization_type').value;
+  let dose = document.getElementById('immunization_dose').value;
+  let instructions = document.getElementById('immunization_instructions').value;
+  let alert = document.getElementById('immunization_error');
+  alert.style.display = 'none';
+  if(!name || name.trim()==""){
+    alert.innerHTML = "Missing immunization name";
+    alert.style.display = 'block';
+    return;
+  }
 
+  if(!date || date.trim()==""){
+    alert.innerHTML = "Missing immunization date";
+    alert.style.display = 'block';
+    return;
+  }
 
+  if(!type || type.trim()==""){
+    alert.innerHTML = "Missing immunization type";
+    alert.style.display = 'block';
+    return;
+  }
 
+  if(!dose || dose.trim()==""){
+    alert.innerHTML = "Missing immunization dose";
+    alert.style.display = 'block';
+    return;
+  }
 
+  if(!instructions || instructions.trim()==""){
+    alert.innerHTML = "Missing immunization instructions";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      immunizations:[
+        {
+          name,
+          date,
+          type,
+          dose,
+          instructions
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
+
+function submitMedication(e){
+  e.preventDefault();
+  let name = document.getElementById('medication_name').value;
+  let date = document.getElementById('medication_date').value;
+  let type = document.getElementById('medication_type').value;
+  let dose = document.getElementById('medication_dose').value;
+  let rate = document.getElementById('medication_rate').value;
+  let instructions = document.getElementById('medication_instructions').value;
+  let prescriber = document.getElementById('medication_prescriber').value;
+  let alert = document.getElementById('medication_error');
+  alert.style.display = 'none';
+  if(!name || name.trim()==""){
+    alert.innerHTML = "Missing immunization name";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!date || date.trim()==""){
+    alert.innerHTML = "Missing medication date";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!type || type.trim()==""){
+    alert.innerHTML = "Missing medication type";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!dose || dose.trim()==""){
+    alert.innerHTML = "Missing medication dose";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!rate || rate.trim()==""){
+    alert.innerHTML = "Missing medication rate";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!instructions || instructions.trim()==""){
+    alert.innerHTML = "Missing medication instructions";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!prescriber || prescriber.trim()==""){
+    alert.innerHTML = "Missing medication prescriber";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      medications:[
+        {
+          name,
+          date,
+          type,
+          dose,
+          rate,
+          instructions,
+          prescriber
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
+
+function submitProcedure(e){
+  e.preventDefault();
+  let name = document.getElementById('procedure_name').value;
+  let date = document.getElementById('procedure_date').value;
+  let provider = document.getElementById('procedure_provider').value;
+  let address = document.getElementById('procedure_address').value;
+  let alert = document.getElementById('procedure_error');
+  alert.style.display = 'none';
+  if(!name || name.trim()==""){
+    alert.innerHTML = "Missing procedure name";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!date || date.trim()==""){
+    alert.innerHTML = "Missing procedure date";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!provider || provider.trim()==""){
+    alert.innerHTML = "Missing procedure provider";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!address || address.trim()==""){
+    alert.innerHTML = "Missing procedure address";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      procedures:[
+        {
+          name,
+          date,
+          provider,
+          address
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
+
+function submitProblem(e){
+  e.preventDefault();
+  let observation = document.getElementById('problem_observation').value;
+  let date = document.getElementById('problem_date').value;
+  let status = document.getElementById('problem_status').value;
+  let comments = document.getElementById('problem_comments').value;
+  let alert = document.getElementById('problem_error');
+  alert.style.display = 'none';
+  if(!observation || observation.trim()==""){
+    alert.innerHTML = "Missing problem observation";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!status || status.trim()==""){
+    alert.innerHTML = "Missing problem status";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!date || date.trim()==""){
+    alert.innerHTML = "Missing problem date";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!comments || comments.trim()==""){
+    alert.innerHTML = "Missing problem comments";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      problems:[
+        {
+          observation,
+          status,
+          date,
+          comments
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
+
+function submitFamilyHistory(e){
+  e.preventDefault();
+  let role = document.getElementById('familyhistory_role').value;
+  let type = document.getElementById('familyhistory_type').value;
+  let date = document.getElementById('familyhistory_date').value;
+  let informations = document.getElementById('familyhistory_informations').value;
+  let alert = document.getElementById('familyhistory_error');
+  alert.style.display = 'none';
+  if(!role || role.trim()==""){
+    alert.innerHTML = "Missing role";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!type || type.trim()==""){
+    alert.innerHTML = "Missing type";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!date || date.trim()==""){
+    alert.innerHTML = "Missing date";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!informations || informations.trim()==""){
+    alert.innerHTML = "Missing informations";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      family_history:[
+        {
+          role,
+          type,
+          date,
+          informations
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
+
+function submitEncounter(e){
+  e.preventDefault();
+  let name = document.getElementById('encounter_name').value;
+  let provider = document.getElementById('encounter_provider').value;
+  let location = document.getElementById('encounter_location').value;
+  let date = document.getElementById('encounter_date').value;
+  let alert = document.getElementById('encounter_error');
+  alert.style.display = 'none';
+  if(!name || name.trim()==""){
+    alert.innerHTML = "Missing encounter name";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!provider || provider.trim()==""){
+    alert.innerHTML = "Missing encounter provider";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!location || location.trim()==""){
+    alert.innerHTML = "Missing encounter location";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!date || date.trim()==""){
+    alert.innerHTML = "Missing encounter date";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      encounters:[
+        {
+          name,
+          provider,
+          location,
+          date
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
+
+function submitPlanOfCare(e){
+  e.preventDefault();
+  let activity = document.getElementById('planofcare_activity').value;
+  let date = document.getElementById('planofcare_date').value;
+  let instructions = document.getElementById('planofcare_instructions').value;
+  let alert = document.getElementById('planofcare_error');
+  alert.style.display = 'none';
+  if(!activity || activity.trim()==""){
+    alert.innerHTML = "Missing activity";
+    alert.style.display = 'block';
+    return;
+  }
+
+  if(!date || date.trim()==""){
+    alert.innerHTML = "Missing date";
+    alert.style.display = 'block';
+    return;
+  }
+  if(!instructions || instructions.trim()==""){
+    alert.innerHTML = "Missing instructions";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      plans_of_care:[
+        {
+          activity,
+          date,
+          instructions
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
+
+function submitLabResult(e){
+  e.preventDefault();
+  let detail_results = document.getElementById('labresult_detail_results').value;
+  let alert = document.getElementById('labresult_error');
+  alert.style.display = 'none';
+  if(!detail_results || detail_results.trim()==""){
+    alert.innerHTML = "Missing detail results";
+    alert.style.display = 'block';
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    dataType: "JSON",
+    contentType: "application/json",
+    data: JSON.stringify({
+      lab_results:[
+        {
+          detail_results
+        }
+      ]
+    }),
+    error: function(error) {
+      console.log(error);
+    },
+    success: function(data) {
+      console.log(data);
+      summaryData = data;
+      // getMetaInfo().then(function() {
+      //   initMap();
+      // });
+    },
+    type: "POST"
+  });
+}
 
 // //Sumary data for 64 provinces
 // var summaryData = [];

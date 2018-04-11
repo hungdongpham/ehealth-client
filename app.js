@@ -52,9 +52,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// app.listen(8080,function(){
-//   console.log("Live at Port 8080x");
-// });
+app.listen(8080,function(){
+  console.log("Live at Port 8080x");
+});
 
 
 module.exports = app;

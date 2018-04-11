@@ -4,8 +4,6 @@ block vars
   - var pageTitle = 'Medical Records'
 block content
     ul.nav.nav-tabs
-      li.active
-        a(data-toggle='tab', href='#myinfo') My Information
       li
         a(data-toggle='tab', href='#myguardian') My Guardian
       li
@@ -31,53 +29,6 @@ block content
       li
         a(data-toggle='tab', href='#labresults') Lab Results
     .tab-content
-     
-
-      #myinfo.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-               // | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label First Name
-                        input.form-control
-                      .form-group
-                        label Last Name
-                        input.form-control
-                      .form-group
-                        label Gender
-                        select.form-control
-                          option Male
-                          option Female
-                          option Uknown destination
-                      .form-group
-                        label Marital Status
-                        select.form-control
-                          option Married
-                          option Divorced
-                          option Single dad
-                          option Black widow
-                          option Forever alone
-                      .form-group
-                        label Address
-                        input.form-control
-                      .form-group
-                        label Telephone
-                        input.form-control
-                      .form-group
-                        label Birthday
-                        input.form-control
-                      .form-group
-                        label Language
-                        input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
        #myguardian.tab-pane.fade
         br
         .row

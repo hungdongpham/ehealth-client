@@ -2,7 +2,7 @@ function fireInTheHole(e) {
   e.preventDefault();
   console.log("Boom Boom Boom");
   $.ajax({
-    url: "http://localhost:4000/medical_record",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record",
     data: {
       format: "json"
     },
@@ -69,7 +69,7 @@ function submitGuardian(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -132,7 +132,7 @@ function submitDoctor(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -206,7 +206,7 @@ function submitResume(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -262,7 +262,7 @@ function submitAllergy(e){
 
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -329,7 +329,7 @@ function submitImmunization(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -411,7 +411,7 @@ function submitMedication(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -474,7 +474,7 @@ function submitProcedure(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -534,7 +534,7 @@ function submitProblem(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -594,7 +594,7 @@ function submitFamilyHistory(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -654,7 +654,7 @@ function submitEncounter(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -706,7 +706,7 @@ function submitPlanOfCare(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({
@@ -744,7 +744,7 @@ function submitLabResult(e){
   }
 
   $.ajax({
-    url: "http://localhost:4000/medical_record/5ac1aa1b996c5c3e9c34cc2e",
+    url: "https://puf-ehealth-server.herokuapp.com/medical_record/5ac1aa1b996c5c3e9c34cc2e",
     dataType: "JSON",
     contentType: "application/json",
     data: JSON.stringify({

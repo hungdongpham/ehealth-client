@@ -4,6 +4,8 @@ block vars
   - var pageTitle = 'Medical Records'
 block content
     ul.nav.nav-tabs
+      li.active
+        a(data-toggle='tab', href='#myinfo') My Information
       li
         a(data-toggle='tab', href='#myguardian') My Guardian
       li
@@ -29,20 +31,19 @@ block content
       li
         a(data-toggle='tab', href='#labresults') Lab Results
     .tab-content
-      form(role='form', lpformnum='1', _lpchecked='1')
-        #myguardian.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      .form-group
-                        label Role
-                        input.form-control
+     
+
+      #myinfo.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+               // | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label First Name
                         input.form-control
@@ -50,268 +51,351 @@ block content
                         label Last Name
                         input.form-control
                       .form-group
+                        label Gender
+                        select.form-control
+                          option Male
+                          option Female
+                          option Uknown destination
+                      .form-group
+                        label Marital Status
+                        select.form-control
+                          option Married
+                          option Divorced
+                          option Single dad
+                          option Black widow
+                          option Forever alone
+                      .form-group
                         label Address
                         input.form-control
                       .form-group
                         label Telephone
+                        input.form-control
+                      .form-group
+                        label Birthday
                         input.form-control
                       .form-group
                         label Language
                         input.form-control
-        #mydoctor.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      .form-group
-                        label Name
-                        input.form-control
-                      .form-group
-                        label Address
-                        input.form-control
-                      .form-group
-                        label Telephone
-                        input.form-control
-                      .form-group
-                        label Speciality
-                        input.form-control
-        #resume.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label Currently
-                        input.form-control
-                      .form-group
-                        label Soon
-                        input.form-control
-                      .form-group
-                        label Blood Pressure
-                        input.form-control
-                      .form-group
-                        label Size
-                        input.form-control
-                      .form-group
-                        label Height
-                        input.form-control
-                      .form-group
-                        label Life history
-                        input.form-control
-        #allergies.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label Name
-                        input.form-control
-                      .form-group
-                        label Reaction
-                        input.form-control
-                      .form-group
-                        label Severity
-                        input.form-control
-        #immunizations.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label Name
-                        input.form-control
-                      .form-group
-                        label Date
-                        input.form-control
-                      .form-group
-                        label Type
-                        input.form-control
-                      .form-group
-                        label Dose
-                        input.form-control
-                      .form-group
-                        label Instructions
-                        input.form-control
-        #medication.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label Name
-                        input.form-control
-                      .form-group
-                        label Type
-                        input.form-control
-                      .form-group
-                        label Date
-                        input.form-control
-                      .form-group
-                        label Dose
-                        input.form-control
-                      .form-group
-                        label Rate
-                        input.form-control
-                      .form-group
-                        label Instructions
-                        input.form-control
-                      .form-group
-                        label Prescriber
-                        input.form-control
-        #procedures.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label Procedure
-                        input.form-control
-                      .form-group
-                        label Date
-                        input.form-control
-                      .form-group
-                        label Provider
-                        input.form-control
-                      .form-group
-                        label Address
-                        input.form-control
-        #problemlist.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label Observation
-                        input.form-control
-                      .form-group
-                        label Status
-                        input.form-control
-                      .form-group
-                        label Date
-                        input.form-control
-                      .form-group
-                        label Comments
-                        input.form-control
-        #familyhistory.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+       #myguardian.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Role
-                        input.form-control
+                        input#guardian_role.form-control
+                      .form-group
+                        label First Name
+                        input#guardian_first_name.form-control
+                      .form-group
+                        label Last Name
+                        input#guardian_last_name.form-control
+                      .form-group
+                        label Address
+                        input#guardian_address.form-control
+                      .form-group
+                        label Telephone
+                        input#guardian_telephone.form-control
+                      .form-group
+                        label Language
+                        input#guardian_language.form-control
+                      div#guardian_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitGuardian(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+       #mydoctor.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input#doctor_name.form-control
+                      .form-group
+                        label Address
+                        input#doctor_address.form-control
+                      .form-group
+                        label Telephone
+                        input#doctor_telephone.form-control
+                      .form-group
+                        label Speciality
+                        input#doctor_speciality.form-control
+                      div#doctor_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitDoctor(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #resume.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Currently
+                        input#resume_currently.form-control
+                      .form-group
+                        label Soon
+                        input#resume_soon.form-control
+                      .form-group
+                        label Blood Pressure
+                        input#resume_blood_pressure.form-control
+                      .form-group
+                        label Size
+                        input#resume_size.form-control
+                      .form-group
+                        label Height
+                        input#resume_height.form-control
+                      .form-group
+                        label Life history
+                        input#resume_life_history.form-control
+                      div#resume_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitResume(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #allergies.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input#allergy_name.form-control
+                      .form-group
+                        label Reaction
+                        input#allergy_reaction.form-control
+                      .form-group
+                        label Severity
+                        input#allergy_severity.form-control
+                      div#allergy_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitAllergy(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #immunizations.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input#immunization_name.form-control
+                      .form-group
+                        label Date
+                        input#immunization_date.form-control
                       .form-group
                         label Type
-                        input.form-control
+                        input#immunization_type.form-control
                       .form-group
-                        label Date
-                        input.form-control
-                      .form-group
-                        label Informations
-                        input.form-control
-        #encounters.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label Encounter
-                        input.form-control
-                      .form-group
-                        label Provider
-                        input.form-control
-                      .form-group
-                        label Location
-                        input.form-control
-                      .form-group
-                        label Date
-                        input.form-control
-        #planofcare.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label Planned Activity
-                        input.form-control
-                      .form-group
-                        label Planned Date
-                        input.form-control
+                        label Dose
+                        input#immunization_dose.form-control
                       .form-group
                         label Instructions
-                        input.form-control
-        #labresults.tab-pane.fade
-          br
-          .row
-            .col-lg-12
-              .panel.panel-info
-                //.panel-heading
-                //  | Basic Form Elements
-                .panel-body
-                  .row
-                    .col-lg-6
-                      //form(role='form', lpformnum='1', _lpchecked='1')
+                        input#immunization_instructions.form-control
+                      div#immunization_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitImmunization(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #medication.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input#medication_name.form-control
+                      .form-group
+                        label Type
+                        input#medication_type.form-control
+                      .form-group
+                        label Date
+                        input#medication_date.form-control
+                      .form-group
+                        label Dose
+                        input#medication_dose.form-control
+                      .form-group
+                        label Rate
+                        input#medication_rate.form-control
+                      .form-group
+                        label Instructions
+                        input#medication_instructions.form-control
+                      .form-group
+                        label Prescriber
+                        input#medication_prescriber.form-control
+                      div#medication_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitMedication(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #procedures.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Procedure
+                        input#procedure_name.form-control
+                      .form-group
+                        label Date
+                        input#procedure_date.form-control
+                      .form-group
+                        label Provider
+                        input#procedure_provider.form-control
+                      .form-group
+                        label Address
+                        input#procedure_address.form-control
+                      div#procedure_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitProcedure(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #problemlist.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Observation
+                        input#problem_observation.form-control
+                      .form-group
+                        label Status
+                        input#problem_status.form-control
+                      .form-group
+                        label Date
+                        input#problem_date.form-control
+                      .form-group
+                        label Comments
+                        input#problem_comments.form-control
+                      div#problem_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitProblem(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #familyhistory.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Role
+                        input#familyhistory_role.form-control
+                      .form-group
+                        label Type
+                        input#familyhistory_type.form-control
+                      .form-group
+                        label Date
+                        input#familyhistory_date.form-control
+                      .form-group
+                        label Informations
+                        input#familyhistory_informations.form-control
+                      div#familyhistory_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitFamilyHistory(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #encounters.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Encounter
+                        input#encounter_name.form-control
+                      .form-group
+                        label Provider
+                        input#encounter_provider.form-control
+                      .form-group
+                        label Location
+                        input#encounter_location.form-control
+                      .form-group
+                        label Date
+                        input#encounter_date.form-control
+                      div#encounter_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitEncounter(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+      #planofcare.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Planned Activity
+                        input#planofcare_activity.form-control
+                      .form-group
+                        label Planned Date
+                        input#planofcare_date.form-control
+                      .form-group
+                        label Instructions
+                        input#planofcare_instructions.form-control
+                      div#planofcare_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitPlanOfCare(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button
+     #labresults.tab-pane.fade
+        br
+        .row
+          .col-lg-12
+            .panel.panel-info
+              //.panel-heading
+              //  | Basic Form Elements
+              .panel-body
+                .row
+                  .col-lg-6
+                    form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Details Results
-                        input.form-control
-      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-      button.btn.btn-default(type='reset') Reset Button
+                        input#labresult_detail_results.form-control
+                      div#labresult_error.alert.alert-danger(style="display:none")
+                      button.btn.btn-default(type='submit', onclick='submitLabResult(event)') Submit Button
+                      button.btn.btn-default(type='reset') Reset Button

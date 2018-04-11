@@ -1,0 +1,317 @@
+
+extends layout
+block vars
+  - var pageTitle = 'Medical Records'
+block content
+    ul.nav.nav-tabs
+      li
+        a(data-toggle='tab', href='#myguardian') My Guardian
+      li
+        a(data-toggle='tab', href='#mydoctor') My Doctor
+      li
+        a(data-toggle='tab', href='#resume') Resume
+      li
+        a(data-toggle='tab', href='#allergies') Allergies
+      li
+        a(data-toggle='tab', href='#immunizations') Immunizations
+      li
+        a(data-toggle='tab', href='#medication') Medication
+      li
+        a(data-toggle='tab', href='#procedures') Procedures
+      li
+        a(data-toggle='tab', href='#problemlist') Problem List
+      li
+        a(data-toggle='tab', href='#familyhistory') Family History
+      li
+        a(data-toggle='tab', href='#encounters') Encounters
+      li
+        a(data-toggle='tab', href='#planofcare') Plan of care
+      li
+        a(data-toggle='tab', href='#labresults') Lab Results
+    .tab-content
+      form(role='form', lpformnum='1', _lpchecked='1')
+        #myguardian.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      .form-group
+                        label Role
+                        input.form-control
+                      .form-group
+                        label First Name
+                        input.form-control
+                      .form-group
+                        label Last Name
+                        input.form-control
+                      .form-group
+                        label Address
+                        input.form-control
+                      .form-group
+                        label Telephone
+                        input.form-control
+                      .form-group
+                        label Language
+                        input.form-control
+        #mydoctor.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      .form-group
+                        label Name
+                        input.form-control
+                      .form-group
+                        label Address
+                        input.form-control
+                      .form-group
+                        label Telephone
+                        input.form-control
+                      .form-group
+                        label Speciality
+                        input.form-control
+        #resume.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Currently
+                        input.form-control
+                      .form-group
+                        label Soon
+                        input.form-control
+                      .form-group
+                        label Blood Pressure
+                        input.form-control
+                      .form-group
+                        label Size
+                        input.form-control
+                      .form-group
+                        label Height
+                        input.form-control
+                      .form-group
+                        label Life history
+                        input.form-control
+        #allergies.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input.form-control
+                      .form-group
+                        label Reaction
+                        input.form-control
+                      .form-group
+                        label Severity
+                        input.form-control
+        #immunizations.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Type
+                        input.form-control
+                      .form-group
+                        label Dose
+                        input.form-control
+                      .form-group
+                        label Instructions
+                        input.form-control
+        #medication.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Name
+                        input.form-control
+                      .form-group
+                        label Type
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Dose
+                        input.form-control
+                      .form-group
+                        label Rate
+                        input.form-control
+                      .form-group
+                        label Instructions
+                        input.form-control
+                      .form-group
+                        label Prescriber
+                        input.form-control
+        #procedures.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Procedure
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Provider
+                        input.form-control
+                      .form-group
+                        label Address
+                        input.form-control
+        #problemlist.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Observation
+                        input.form-control
+                      .form-group
+                        label Status
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Comments
+                        input.form-control
+        #familyhistory.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Role
+                        input.form-control
+                      .form-group
+                        label Type
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+                      .form-group
+                        label Informations
+                        input.form-control
+        #encounters.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Encounter
+                        input.form-control
+                      .form-group
+                        label Provider
+                        input.form-control
+                      .form-group
+                        label Location
+                        input.form-control
+                      .form-group
+                        label Date
+                        input.form-control
+        #planofcare.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Planned Activity
+                        input.form-control
+                      .form-group
+                        label Planned Date
+                        input.form-control
+                      .form-group
+                        label Instructions
+                        input.form-control
+        #labresults.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
+                      .form-group
+                        label Details Results
+                        input.form-control
+      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
+      button.btn.btn-default(type='reset') Reset Button

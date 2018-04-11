@@ -4,8 +4,6 @@ block vars
   - var pageTitle = 'Medical Records'
 block content
     ul.nav.nav-tabs
-      li.active
-        a(data-toggle='tab', href='#myinfo') My Information
       li
         a(data-toggle='tab', href='#myguardian') My Guardian
       li
@@ -31,64 +29,17 @@ block content
       li
         a(data-toggle='tab', href='#labresults') Lab Results
     .tab-content
-     
-
-      #myinfo.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-               // | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
-                      .form-group
-                        label First Name
-                        input.form-control
-                      .form-group
-                        label Last Name
-                        input.form-control
-                      .form-group
-                        label Gender
-                        select.form-control
-                          option Male
-                          option Female
-                          option Uknown destination
-                      .form-group
-                        label Marital Status
-                        select.form-control
-                          option Married
-                          option Divorced
-                          option Single dad
-                          option Black widow
-                          option Forever alone
-                      .form-group
-                        label Address
-                        input.form-control
-                      .form-group
-                        label Telephone
-                        input.form-control
-                      .form-group
-                        label Birthday
-                        input.form-control
-                      .form-group
-                        label Language
-                        input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-       #myguardian.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+      form(role='form', lpformnum='1', _lpchecked='1')
+        #myguardian.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
                       .form-group
                         label Role
                         input.form-control
@@ -107,19 +58,16 @@ block content
                       .form-group
                         label Language
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-       #mydoctor.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #mydoctor.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
                       .form-group
                         label Name
                         input.form-control
@@ -132,19 +80,17 @@ block content
                       .form-group
                         label Speciality
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-      #resume.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #resume.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Currently
                         input.form-control
@@ -163,19 +109,17 @@ block content
                       .form-group
                         label Life history
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-      #allergies.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #allergies.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Name
                         input.form-control
@@ -185,19 +129,17 @@ block content
                       .form-group
                         label Severity
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-      #immunizations.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #immunizations.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Name
                         input.form-control
@@ -213,19 +155,17 @@ block content
                       .form-group
                         label Instructions
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-      #medication.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #medication.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Name
                         input.form-control
@@ -247,19 +187,17 @@ block content
                       .form-group
                         label Prescriber
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-      #procedures.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #procedures.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Procedure
                         input.form-control
@@ -272,19 +210,17 @@ block content
                       .form-group
                         label Address
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-      #problemlist.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #problemlist.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Observation
                         input.form-control
@@ -297,19 +233,17 @@ block content
                       .form-group
                         label Comments
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-      #familyhistory.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #familyhistory.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Role
                         input.form-control
@@ -322,19 +256,17 @@ block content
                       .form-group
                         label Informations
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-      #encounters.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #encounters.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Encounter
                         input.form-control
@@ -347,19 +279,17 @@ block content
                       .form-group
                         label Date
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
-      #planofcare.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #planofcare.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Planned Activity
                         input.form-control
@@ -369,21 +299,19 @@ block content
                       .form-group
                         label Instructions
                         input.form-control
-                    button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                    button.btn.btn-default(type='reset') Reset Button
-     #labresults.tab-pane.fade
-        br
-        .row
-          .col-lg-12
-            .panel.panel-info
-              //.panel-heading
-              //  | Basic Form Elements
-              .panel-body
-                .row
-                  .col-lg-6
-                    form(role='form', lpformnum='1', _lpchecked='1')
+        #labresults.tab-pane.fade
+          br
+          .row
+            .col-lg-12
+              .panel.panel-info
+                //.panel-heading
+                //  | Basic Form Elements
+                .panel-body
+                  .row
+                    .col-lg-6
+                      //form(role='form', lpformnum='1', _lpchecked='1')
                       .form-group
                         label Details Results
                         input.form-control
-                      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
-                      button.btn.btn-default(type='reset') Reset Button
+      button.btn.btn-default(type='submit', onclick='fireInTheHole(event)') Submit Button
+      button.btn.btn-default(type='reset') Reset Button

@@ -52,7 +52,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000,function(){
+app.listen(80,function(){
   console.log("Live at Port 3000");
 });
 

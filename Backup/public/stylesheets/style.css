@@ -1,0 +1,471 @@
+.navbar-brand{
+  height: 70px;
+}
+.navbar-brand img{
+  display: inline-block;
+}
+.branch-name{
+  padding-left: 10px;
+  font-weight: bold;
+}
+.navbar-top-links{
+  margin-top: 10px;
+}
+@media (min-width: 768px){
+  .sidebar{
+    margin-top: 71px;
+  }
+}
+
+#page-content {
+  min-height: 537px;
+  background-color: white;
+}
+@media (min-width: 768px) {
+  #page-content {
+    position: inherit;
+    border-left: 1px solid #e7e7e7;
+  }
+}
+
+#page-content .primary-button{
+  height: calc(100vh - 90px);
+  border: 1px solid #e7e7e7;
+  border-bottom: 2px solid #e7e7e7;
+  display: table;
+  text-align: center;
+}
+
+#page-content .primary-button:hover{
+  cursor: pointer;
+  background-color: #e7e7e7;
+}
+
+#page-content .primary-button span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/******************************************************************************************
+**************************************** Medical advise ***********************************
+******************************************************************************************/
+#medical-advises .item {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+#medical-advises .item .date {
+  padding: 1em 2em;
+}
+#medical-advises .item .date > div {
+  position: relative;
+  text-align: center;
+  font-size: 0.8em;
+}
+#medical-advises .item .date > div::after {
+  content: "";
+  width: 100%;
+  height: 0;
+  border-bottom: 1px solid #232b50;
+  position: absolute;
+  top: 2.75em;
+  left: 5.5em;
+}
+
+@media (min-width: 768px) {
+  #medical-advises .item .date > div::after {
+    left: 6em;
+  }
+}
+
+#medical-advises .item .date img {
+  border-radius: 50%;
+  height: 5em;
+  width: 5em;
+  border: 0.35em solid #5ed3bf;
+} 
+#medical-advises .item .date span {
+  display: block;
+  clear: both;
+  padding: 0.25em 0;
+  margin: 0.5em 0;
+}
+#medical-advises .item .details {
+  position: relative;
+  flex-grow: 1;
+}
+#medical-advises .item .details > div {
+  border: 1px solid #232b50;
+  border-radius: 0.5em;
+  margin: 1em 0;
+}
+
+#medical-advises .item .details > div .panel-heading {
+  /*border-radius: 0.5em;*/
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+#medical-advises .item .details > div .panel-footer {
+  /*border-radius: 0.5em;*/
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+#medical-advises .item .details::before {
+  content: "";
+  width: 0;
+  height: 100%;
+  border-left: 1px solid #232b50;
+  position: absolute;
+  top: 0;
+  left: -4.35em;
+  z-index: -1;
+}
+
+#medical-advises .item .details > div .advise-request {
+  color: #5ed3bf;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0 0 0.5em 0;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+} 
+
+#medical-advises .item .details > div .list-answers .answer {
+  margin-bottom: 15px;
+} 
+
+#medical-advises .item .details > div .answer-info {
+  font-size: 18px;
+  margin-bottom: 10px;
+} 
+
+
+/******************************************************************************************
+**************************************** Medical advise ***********************************
+******************************************************************************************/
+#medical-records .sub-nav{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#medical-records .row{
+  margin-right: 0;
+  margin-left: 0;
+}
+/****************************************** Allergies ************************************/
+#allergies-list{
+  word-wrap: break-word;
+}
+#allergies-list .allergie-container{
+  border: 1px solid black;
+  padding : 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#allergies-list .allergie-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#allergies-list .allergie-button .row{
+  margin-bottom: 20px;
+}
+#allergies-list input[disabled]{
+  background-color: white;
+  border: none;
+}
+
+#allergies-list select, #allergie-form select, #allergies-list input, #allergie-form input{
+  width: 100%;
+}
+
+#allergies-list select[disabled]{
+  cursor: not-allowed;
+}
+
+#allergie-form .row{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#allergie-form .add-allergie-error{
+  color: red;
+}
+
+/************************************* Immunizations *******************************/
+#immunizations-list{
+  word-wrap: break-word;
+}
+#immunizations-list .immunization-container{
+  border: 1px solid black;
+  padding : 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#immunizations-list .immunization-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#immunizations-list .immunization-button .row{
+  margin-bottom: 20px;
+}
+#immunizations-list input[disabled]{
+  background-color: white;
+  border: none;
+}
+
+#immunizations-list input, #immunization-form input{
+  width: 100%;
+}
+
+#immunization-form .row{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#immunization-form .add-immunization-error{
+  color: red;
+}
+
+/************************************* Procedure *******************************/
+#procedures-list{
+  word-wrap: break-word;
+}
+#procedures-list .procedure-container{
+  border: 1px solid black;
+  padding : 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#procedures-list .procedure-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#procedures-list .procedure-button .row{
+  margin-bottom: 20px;
+}
+#procedures-list input[disabled]{
+  background-color: white;
+  border: none;
+}
+
+#procedures-list input, #procedure-form input{
+  width: 100%;
+}
+
+#procedure-form .row{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#procedure-form .add-procedure-error{
+  color: red;
+}
+
+/************************************* Problems list *******************************/
+#problems-list{
+  word-wrap: break-word;
+}
+#problems-list .problem-container{
+  border: 1px solid black;
+  padding : 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#problems-list .problem-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#problems-list .problem-button .row{
+  margin-bottom: 20px;
+}
+#problems-list input[disabled]{
+  background-color: white;
+  border: none;
+}
+
+#problems-list input, #problem-form input{
+  width: 100%;
+}
+
+#problem-form .row{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#problem-form .add-problem-error{
+  color: red;
+}
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.navbar-brand>img{
+  display: inline-block!important;
+  margin-right: 10px;
+}
+
+.contact-form {
+  margin-top: 50px;
+}
+
+.contact-form input, .contact-form textarea{
+  margin-bottom: 10px;
+}
+
+.our-team-region p{
+  padding-bottom: 50px;
+}
+
+.our-team-region img{
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.border-area{
+  margin-top: 30px;
+  border: 2px solid black;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: white;
+}
+.info-area{
+  padding-top: 30px;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 10px;
+}
+.filter-area{
+  padding-top: 30px;
+}
+.ul-info{
+  display: none;
+}
+.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+.go-detail{
+  float: right;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+.note-area ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+.map-gradient{
+  background: #00FF00;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-right: 10px;
+  opacity: 0.6;
+}
+.color-1{
+  background: #00D600;
+}
+.color-2{
+  background: #00AD00;
+}
+.color-3{
+  background: #008400;
+}
+.color-4{
+  background: #005C00;
+}
+.fileinput-new .btn-file{
+  width: 100%;
+}
+.design-by{
+  font-size: 9px;
+}
+.custom-brand b{
+  color:#42a640;
+}
+.import-region{
+  padding-top:20px;
+}
+
+.navbar-inverse {
+  background-color: #a3ccff !important;
+}
+
+.navbar-brand b{
+  color: #080808;
+}
+
+.annotation-label{
+  text-transform: capitalize;
+}
+
+.info-details .badge {
+  float: right;
+}
+
+.info-area{
+  padding: 10px;
+}
+
+.sum-info{
+  padding: 20px;
+}
+
+.panel-no-info{
+  margin-top: 20px;
+}
+
+.province-selection{
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.panel-no-info{
+  margin-left: 30px;
+}
+
+.syndrome-selection input {
+  margin-right: 10px!important;
+}
+
+.import-btn{
+  margin-left: 10px;
+}
+
+.filter-area span{
+ font-weight: bold;
+}
+
+.img-markers{
+  margin-right: 5px;
+}
+@media only screen and (min-width: 768px) {
+  .info-area{
+      margin-left: 30px;
+  }
+} */

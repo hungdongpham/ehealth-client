@@ -12,7 +12,8 @@ var about = require('./routes/about');
 var contact = require('./routes/contact');
 var detail = require('./routes/detail');
 var doctor_medicalrecords = require('./routes/doctor_medicalrecords');
-
+var patient_medicaladvises = require('./routes/patient_medicaladvises');
+var patient_medicalrecords = require('./routes/patient_medicalrecords');
 var app = express();
 
 // view engine setup
@@ -33,6 +34,8 @@ app.use('/about', about);
 app.use('/contact', contact);
 app.use('/detail', detail);
 app.use('/doctor_medicalrecords', doctor_medicalrecords);
+app.use('/patient_medicaladvises', patient_medicaladvises);
+app.use('/patient_medicalrecords', patient_medicalrecords);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

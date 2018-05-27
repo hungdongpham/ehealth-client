@@ -17,6 +17,300 @@
   }
 }
 
+#page-content {
+  min-height: 537px;
+  background-color: white;
+}
+@media (min-width: 768px) {
+  #page-content {
+    position: inherit;
+    border-left: 1px solid #e7e7e7;
+  }
+}
+
+#page-content .primary-button{
+  height: calc(100vh - 90px);
+  border: 1px solid #e7e7e7;
+  border-bottom: 2px solid #e7e7e7;
+  display: table;
+  text-align: center;
+}
+
+#page-content .primary-button:hover{
+  cursor: pointer;
+  background-color: #e7e7e7;
+}
+
+#page-content .primary-button span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/******************************************************************************************
+**************************************** Medical advise ***********************************
+******************************************************************************************/
+#medical-advises .item {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+#medical-advises .item .date {
+  padding: 1em 2em;
+}
+#medical-advises .item .date > div {
+  position: relative;
+  text-align: center;
+  font-size: 0.8em;
+}
+#medical-advises .item .date > div::after {
+  content: "";
+  width: 100%;
+  height: 0;
+  border-bottom: 1px solid #232b50;
+  position: absolute;
+  top: 2.75em;
+  left: 5.5em;
+}
+
+@media (min-width: 768px) {
+  #medical-advises .item .date > div::after {
+    left: 6em;
+  }
+}
+
+#medical-advises .item .date img {
+  border-radius: 50%;
+  height: 5em;
+  width: 5em;
+  border: 0.35em solid #5ed3bf;
+} 
+#medical-advises .item .date span {
+  display: block;
+  clear: both;
+  padding: 0.25em 0;
+  margin: 0.5em 0;
+}
+#medical-advises .item .details {
+  position: relative;
+  flex-grow: 1;
+}
+#medical-advises .item .details > div {
+  border: 1px solid #232b50;
+  border-radius: 0.5em;
+  margin: 1em 0;
+}
+
+#medical-advises .item .details > div .panel-heading {
+  /*border-radius: 0.5em;*/
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+#medical-advises .item .details > div .panel-footer {
+  /*border-radius: 0.5em;*/
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+#medical-advises .item .details::before {
+  content: "";
+  width: 0;
+  height: 100%;
+  border-left: 1px solid #232b50;
+  position: absolute;
+  top: 0;
+  left: -4.35em;
+  z-index: -1;
+}
+
+#medical-advises .item .details > div .advise-request {
+  color: #5ed3bf;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0 0 0.5em 0;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+} 
+
+#medical-advises .item .details > div .list-answers .answer {
+  margin-bottom: 15px;
+} 
+
+#medical-advises .item .details > div .answer-info {
+  font-size: 18px;
+  margin-bottom: 10px;
+} 
+
+
+/******************************************************************************************
+**************************************** Medical advise ***********************************
+******************************************************************************************/
+#medical-records .sub-nav{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#medical-records .row{
+  margin-right: 0;
+  margin-left: 0;
+}
+/****************************************** Allergies ************************************/
+#allergies-list{
+  word-wrap: break-word;
+}
+#allergies-list .allergie-container{
+  border: 1px solid black;
+  padding : 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#allergies-list .allergie-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#allergies-list .allergie-button .row{
+  margin-bottom: 20px;
+}
+#allergies-list input[disabled]{
+  background-color: white;
+  border: none;
+}
+
+#allergies-list select, #allergie-form select, #allergies-list input, #allergie-form input{
+  width: 100%;
+}
+
+#allergies-list select[disabled]{
+  cursor: not-allowed;
+}
+
+#allergie-form .row{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#allergie-form .add-allergie-error{
+  color: red;
+}
+
+/************************************* Immunizations *******************************/
+#immunizations-list{
+  word-wrap: break-word;
+}
+#immunizations-list .immunization-container{
+  border: 1px solid black;
+  padding : 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#immunizations-list .immunization-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#immunizations-list .immunization-button .row{
+  margin-bottom: 20px;
+}
+#immunizations-list input[disabled]{
+  background-color: white;
+  border: none;
+}
+
+#immunizations-list input, #immunization-form input{
+  width: 100%;
+}
+
+#immunization-form .row{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#immunization-form .add-immunization-error{
+  color: red;
+}
+
+/************************************* Procedure *******************************/
+#procedures-list{
+  word-wrap: break-word;
+}
+#procedures-list .procedure-container{
+  border: 1px solid black;
+  padding : 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#procedures-list .procedure-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#procedures-list .procedure-button .row{
+  margin-bottom: 20px;
+}
+#procedures-list input[disabled]{
+  background-color: white;
+  border: none;
+}
+
+#procedures-list input, #procedure-form input{
+  width: 100%;
+}
+
+#procedure-form .row{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#procedure-form .add-procedure-error{
+  color: red;
+}
+
+/************************************* Problems list *******************************/
+#problems-list{
+  word-wrap: break-word;
+}
+#problems-list .problem-container{
+  border: 1px solid black;
+  padding : 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#problems-list .problem-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#problems-list .problem-button .row{
+  margin-bottom: 20px;
+}
+#problems-list input[disabled]{
+  background-color: white;
+  border: none;
+}
+
+#problems-list input, #problem-form input{
+  width: 100%;
+}
+
+#problem-form .row{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#problem-form .add-problem-error{
+  color: red;
+}
 /* body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;

@@ -1,0 +1,84 @@
+doctype html
+html(lang='en')
+  block vars
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title PUF E-HEATH
+    // Bootstrap Core CSS
+    link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
+    // MetisMenu CSS
+    link(href='stylesheets/metisMenu.min.css', rel='stylesheet')
+    // Custom CSS
+    link(href='stylesheets/sb-admin-2.css', rel='stylesheet')
+    // Morris Charts CSS
+    link(href='stylesheets/morris.css', rel='stylesheet')
+    // Custom Fonts
+    link(href='stylesheets/font-awesome.min.css', rel='stylesheet', type='text/css')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    // Custom styles
+    link(href='stylesheets/style.css', rel='stylesheet')
+    // jQuery
+    script(src='javascripts/jquery.min.js')
+    // Bootstrap Core JavaScript
+    script(src='javascripts/bootstrap.min.js')
+    // Metis Menu Plugin JavaScript
+    script(src='javascripts/metisMenu.min.js')
+    // Morris Charts JavaScript
+    script(src='javascripts/raphael.min.js')
+    // Custom Theme JavaScript
+    script(src='javascripts/sb-admin-2.js')
+    script(src='javascripts/underscore-min.js')
+    script(src='javascripts/moment.js')
+  body
+    #wrapper
+      // Navigation
+      nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='index.html') 
+            img(width='40', height='40', src='images/icon_health-1.png') 
+            span.branch-name PUF eHealth
+          // /.navbar-header
+        ul.nav.navbar-top-links.navbar-right
+          li.dropdown
+            a.dropdown-toggle(data-toggle='dropdown', href='#')
+              i.fa.fa-user.fa-fw
+              i.fa.fa-caret-down
+            ul.dropdown-menu.dropdown-user
+              li
+                a(href='#')
+                  i.fa.fa-user.fa-fw
+                  |  User Profile
+              li
+                a(href='#')
+                  i.fa.fa-gear.fa-fw
+                  |  Settings
+              li.divider
+              li
+                a(href='login.html')
+                  i.fa.fa-sign-out.fa-fw
+                  |  Logout
+            // /.dropdown-user
+          // /.dropdown
+        // /.navbar-top-links
+      #page-content
+        block content
+                  
+      // /#page-wrapper
+    // /#wrapper
+    
+
+    //Tri dep xai cai nay
+    script(src='javascripts/scripts.js')

@@ -1,0 +1,18 @@
+extends primaryNavbar
+block content
+	if user
+		script(type='text/javascript').
+			var user = !{JSON.stringify(user)};
+			var view = '#{view}';
+	if scriptLink
+		script(src='#{scriptLink}')
+	ul.nav.nav-tabs#patient_navbar
+		li
+			a(href='/') Overview
+		li
+			a(href='/medicalrecords') Medical Records
+		li#navbar_medicaladvises
+			a(href='/medicaladvises') Medical Advises
+		li
+			a(href='#menu3') Personal Profile
+	#medical-advises

@@ -1,3 +1,59 @@
+var medicalAdvises_doctor_list_dumb_data = [
+	{
+		patient: {
+			id: "fsdkkwe239",
+			first_name: "Giacomo",
+			last_name: "Guilizzoni"
+		},
+		name: "5 years headache",
+		category: "Cardiology",
+		created_at: 1525859932000,
+		updated_at: 1525859932000,
+		status: 1,
+		created_by:{
+			id: "fsdfewwej",
+			first_name: "Tam",
+			last_name: "Nguyen",
+			speciality: "Orthodontic"
+		}
+	},
+	{
+		patient: {
+			id: "fsdkkwe239",
+			first_name: "Hung",
+			last_name: "Nguyen"
+		},
+		name: "Heart is broken",
+		category: "Cardiology",
+		created_at: 1525859932000,
+		updated_at: 1525859932000,
+		status: 0,
+		created_by:{
+			id: "fsdfewwej",
+			first_name: "Tam",
+			last_name: "Nguyen",
+			speciality: "Orthodontic"
+		}
+	},
+	{
+		patient: {
+			id: "fsdkkwe239",
+			first_name: "Lam",
+			last_name: "Nguyen"
+		},
+		name: "Patient's lung fall out",
+		category: "Cardiology",
+		created_at: 1525859932000,
+		updated_at: 1525859932000,
+		status: 0,
+		created_by:{
+			id: "fsdfewwej",
+			first_name: "Tam",
+			last_name: "Nguyen",
+			speciality: "Orthodontic"
+		}
+	}
+]
 var mecialAdvises_dumb_data = {
 	_das3dsda: {
 		category: "Dietician",
@@ -183,6 +239,72 @@ let displayMedicalAdvises = (listMedicalAdvisesArray) => {
 	}
 }
 
+let displayMedicalAdvisesList = (medicalAdvisesList) => {
+	$("#medical-advises").empty();
+	if(!medicalAdvisesList || medicalAdvisesList.length<=0){
+		$("#medical-advises").html("<h3>No medical advises recorded</h3>")
+		return;
+	}
+
+	let table = document.createElement("table");
+	table.className= "table table-striped";
+	table.innerHTML = 
+		"<thead class='thead-light'>" + 
+			"<tr>" +
+				"<td>Name</td>" +
+				"<td>Patient</td>" +
+				"<td>Created date</td>" +
+				"<td>Modified date</td>" +
+				"<td>Speciality</td>" +
+				"<td>Status</td>" +
+				"<td>Created by</td>" +
+			"</tr>" +
+		"</thead>";
+
+	let tbody = document.createElement("tbody");
+
+	medicalAdvisesList.map( (advise, index) => {
+		let record_tr = document.createElement("tr");
+		record_tr.style.cursor = "pointer";
+		record_tr.addEventListener("dblclick", (evt) => {
+			window.location.href = "http://localhost:3000/medicaladvises/detail"
+		})
+
+		let name_td = document.createElement("td");
+		name_td.innerHTML = advise.name;
+		record_tr.appendChild(name_td);
+
+		let patient_td = document.createElement("td");
+		patient_td.innerHTML = advise.patient.first_name + " " + advise.patient.last_name;
+		record_tr.appendChild(patient_td);
+
+		let createdDate_td = document.createElement("td");
+		createdDate_td.innerHTML = moment(advise.created_at).format('DD/MM/YYYY');;
+		record_tr.appendChild(createdDate_td);
+
+		let updatedDate_td = document.createElement("td");
+		updatedDate_td.innerHTML = moment(advise.updated_at).format('DD/MM/YYYY');
+		record_tr.appendChild(updatedDate_td);
+
+		let speciality_td = document.createElement("td");
+		speciality_td.innerHTML = advise.category;
+		record_tr.appendChild(speciality_td);
+
+		let status_td = document.createElement("td");
+		status_td.innerHTML = (advise.status==1)? "Completed" : "In progress";
+		record_tr.appendChild(status_td);
+
+		let doctor_td = document.createElement("td");
+		doctor_td.innerHTML = advise.created_by.first_name + " " + advise.created_by.last_name;
+		record_tr.appendChild(doctor_td);
+
+		tbody.appendChild(record_tr);
+	})
+
+	table.appendChild(tbody);
+	$("#medical-advises").append(table);
+}
+
 $(document).ready(function() {
   /*
 	call api get medical_advises
@@ -202,6 +324,13 @@ $(document).ready(function() {
   	return -advise.date
   });
 
-  displayMedicalAdvises(listMedicalAdvisesArray);
+  if(view=="advises_list"){
+  	displayMedicalAdvisesList(medicalAdvises_doctor_list_dumb_data);
+  }
+  if(view=="advise_detail"){
+  	displayMedicalAdvises(listMedicalAdvisesArray);
+  }
+
+  
 });
 

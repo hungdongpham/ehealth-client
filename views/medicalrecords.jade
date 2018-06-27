@@ -1,0 +1,313 @@
+extends primaryNavbar
+block content
+	if user
+		script(type='text/javascript').
+			var user = !{JSON.stringify(user)};
+			var view = '#{view}';
+	if scriptLink
+		script(src='#{scriptLink}')
+
+	if user && user.role=='doctor'
+		ul.nav.nav-tabs#patient_navbar
+			li
+				a(href='/') Overview
+			li#navbar_medicalrecords
+				a(href='/medicalrecords') Medical Records
+			li
+				a(href='/patient_medicaladvises') Medical Advises
+			li
+				a(href='#menu3') Personal Profile
+	else
+		ul.nav.nav-tabs#patient_navbar
+			li
+				a(href='/') Overview
+			li#navbar_medicalrecords
+				a(href='/medicalrecords') Medical Records
+			li
+				a(href='/patient_medicaladvises') Medical Advises
+			li
+				a(href='#menu3') Personal Profile
+	#medical-records
+		if view && view=='record_detail'
+			ul.nav.nav-tabs.sub-nav
+				li.active
+					a(data-toggle='tab', href='#allergies') Allergies
+				li
+					a(data-toggle='tab', href='#immunizations') Immunizations
+				li
+					a(data-toggle='tab', href='#procedures') Procedures
+				li
+					a(data-toggle='tab', href='#lab_result') Lab result
+				li
+					a(data-toggle='tab', href='#problem_list') Problem list
+			.tab-content
+				#allergies.tab-pane.fade.in.active
+					#allergies-list.col-xs-6
+					#allergie-form.col-xs-6
+						.row
+							.col-xs-3
+								| Name:
+							.col-xs-9
+								input(type='text', name='new_allergie_name', value='')
+						.row
+							.col-xs-3
+								| Reaction:
+							.col-xs-9
+								input(type='text', name='new_allergie_reaction', value='')
+						.row
+							.col-xs-3
+								| Severity
+							.col-xs-9
+								select(name='new_allergie_severity')
+						.row
+							.col-xs-9.col-xs-offset-3
+								button( onclick='addNewAllergie()')
+									| Add new allergie
+						.row
+							.col-xs-12
+								.add-allergie-error
+				#immunizations.tab-pane.fade
+					#immunizations-list.col-xs-6
+					#immunization-form.col-xs-6
+						.row
+							.col-xs-3
+								| Name:
+							.col-xs-9
+								input(type='text', name='new_immunization_name', value='')
+						.row
+							.col-xs-3
+								| Date:
+							.col-xs-9
+								input(type='text', name='new_immunization_date', value='')
+						.row
+							.col-xs-3
+								| Type
+							.col-xs-9
+								input(type='text', name='new_immunization_type', value='')
+						.row
+							.col-xs-3
+								| Dose
+							.col-xs-9
+								input(type='text', name='new_immunization_dose', value='')
+						.row
+							.col-xs-3
+									| Instructions
+							.col-xs-9
+								input(type='text', name='new_immunization_instructions', value='')
+						.row
+							.col-xs-9.col-xs-offset-3
+								button( onclick='addNewImmunization()')
+									| Add new immunization
+						.row
+							.col-xs-12
+								.add-immunization-error
+				#procedures.tab-pane.fade
+					#procedures-list.col-xs-6
+					#procedure-form.col-xs-6
+						.row
+							.col-xs-3
+								| Procedure:
+							.col-xs-9
+								input(type='text', name='new_procedure_name', value='')
+						.row
+							.col-xs-3
+								| Date:
+							.col-xs-9
+								input(type='text', name='new_procedure_date', value='')
+						.row
+							.col-xs-3
+								| Provider
+							.col-xs-9
+								input(type='text', name='new_procedure_provider', value='')
+						.row
+							.col-xs-3
+								| Address
+							.col-xs-9
+								input(type='text', name='new_procedure_address', value='')
+						.row
+							.col-xs-9.col-xs-offset-3
+								button( onclick='addNewProcedure()')
+									| Add new procedure
+						.row
+							.col-xs-12
+								.add-procedure-error
+				#lab_result.tab-pane.fade
+				#problem_list.tab-pane.fade
+					#problems-list.col-xs-6
+					#problem-form.col-xs-6
+						.row
+							.col-xs-3
+								| Observation:
+							.col-xs-9
+								input(type='text', name='new_problem_observation', value='')
+						.row
+							.col-xs-3
+								| Status:
+							.col-xs-9
+								input(type='text', name='new_problem_status', value='')
+						.row
+							.col-xs-3
+								| Date
+							.col-xs-9
+								input(type='text', name='new_problem_date', value='')
+						.row
+							.col-xs-3
+								| Comments
+							.col-xs-9
+								input(type='text', name='new_problem_comments', value='')
+						.row
+							.col-xs-9.col-xs-offset-3
+								button( onclick='addNewProblem()')
+									| Add new problem
+						.row
+							.col-xs-12
+								.add-problem-error
+		if view && view=='records_list'
+			.row
+				a.btn(href='/medicalrecords/create')
+					| Create new record
+				
+			#medical-records-list
+				.spinner
+					.bounce1
+					.bounce2
+					.bounce3
+		if view && view=='create_record'
+			h1 Create new record
+			ul.nav.nav-tabs.sub-nav
+				li.active
+					a(data-toggle='tab', href='#patient_info') Patient info
+				li
+					a(data-toggle='tab', href='#allergies') Allergies
+				li
+					a(data-toggle='tab', href='#immunizations') Immunizations
+				li
+					a(data-toggle='tab', href='#procedures') Procedures
+				li
+					a(data-toggle='tab', href='#lab_result') Lab result
+				li
+					a(data-toggle='tab', href='#problem_list') Problem list
+			.tab-content
+				#patient_info.tab-pane.fade.in.active.col-xs-6
+				#allergies.tab-pane.fade.in
+					#allergies-list.col-xs-6
+					#allergie-form.col-xs-6
+						form(action='#')
+							.row
+								.col-xs-3
+									| Name:
+								.col-xs-9
+									input(type='text', name='new_allergie_name', value='')
+							.row
+								.col-xs-3
+									| Reaction:
+								.col-xs-9
+									input(type='text', name='new_allergie_reaction', value='')
+							.row
+								.col-xs-3
+									| Severity
+								.col-xs-9
+									select(name='new_allergie_severity')
+							.row
+								.col-xs-9.col-xs-offset-3
+									input(type='submit', value='Add new allergie' onclick='return addNewAllergie()')
+							.row
+								.col-xs-12
+									.add-allergie-error
+				#immunizations.tab-pane.fade
+					#immunizations-list.col-xs-6
+					#immunization-form.col-xs-6
+						form(action='#')
+							.row
+								.col-xs-3
+									| Name:
+								.col-xs-9
+									input(type='text', name='new_immunization_name', value='')
+							.row
+								.col-xs-3
+									| Date:
+								.col-xs-9
+									input(type='text', name='new_immunization_date', value='')
+							.row
+								.col-xs-3
+									| Type
+								.col-xs-9
+									input(type='text', name='new_immunization_type', value='')
+							.row
+								.col-xs-3
+									| Dose
+								.col-xs-9
+									input(type='text', name='new_immunization_dose', value='')
+							.row
+								.col-xs-3
+									| Instructions
+								.col-xs-9
+									input(type='text', name='new_immunization_instructions', value='')
+							.row
+								.col-xs-9.col-xs-offset-3
+									input(type='submit', value='Add new immunization' onclick='return addNewImmunization()')
+							.row
+								.col-xs-12
+									.add-immunization-error
+				#procedures.tab-pane.fade
+					#procedures-list.col-xs-6
+					#procedure-form.col-xs-6
+						form(action='#')
+							.row
+								.col-xs-3
+									| Procedure:
+								.col-xs-9
+									input(type='text', name='new_procedure_name', value='')
+							.row
+								.col-xs-3
+									| Date:
+								.col-xs-9
+									input(type='text', name='new_procedure_date', value='')
+							.row
+								.col-xs-3
+									| Provider
+								.col-xs-9
+									input(type='text', name='new_procedure_provider', value='')
+							.row
+								.col-xs-3
+									| Address
+								.col-xs-9
+									input(type='text', name='new_procedure_address', value='')
+							.row
+								.col-xs-9.col-xs-offset-3
+									input(type='submit', value='Add new procedure' onclick='return addNewProcedure()')
+							.row
+								.col-xs-12
+									.add-procedure-error
+				#lab_result.tab-pane.fade
+				#problem_list.tab-pane.fade
+					#problems-list.col-xs-6
+					#problem-form.col-xs-6
+						form(action='#')
+							.row
+								.col-xs-3
+									| Observation:
+								.col-xs-9
+									input(type='text', name='new_problem_observation', value='')
+							.row
+								.col-xs-3
+									| Status:
+								.col-xs-9
+									input(type='text', name='new_problem_status', value='')
+							.row
+								.col-xs-3
+									| Date
+								.col-xs-9
+									input(type='text', name='new_problem_date', value='')
+							.row
+								.col-xs-3
+									| Comments
+								.col-xs-9
+									input(type='text', name='new_problem_comments', value='')
+							.row
+								.col-xs-9.col-xs-offset-3
+									input(type='submit', value='Add new problem' onclick='return addNewProblem()')
+							.row
+								.col-xs-12
+									.add-problem-error
+

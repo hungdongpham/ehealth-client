@@ -28,7 +28,29 @@
   }
 }
 
-#page-content .primary-button{
+/******************************************************************************************
+**************************************** Overview page ************************************
+******************************************************************************************/
+
+#doctor_overview .primary-button{
+  height: calc((100vh - 90px) /2);
+  border: 1px solid #e7e7e7;
+  border-bottom: 2px solid #e7e7e7;
+  display: table;
+  text-align: center;
+}
+
+#doctor_overview .primary-button:hover{
+  cursor: pointer;
+  background-color: #e7e7e7;
+}
+
+#doctor_overview .primary-button span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#patient_overview .primary-button{
   height: calc(100vh - 90px);
   border: 1px solid #e7e7e7;
   border-bottom: 2px solid #e7e7e7;
@@ -36,16 +58,26 @@
   text-align: center;
 }
 
-#page-content .primary-button:hover{
+#patient_overview .primary-button:hover{
   cursor: pointer;
   background-color: #e7e7e7;
 }
 
-#page-content .primary-button span {
+#patient_overview .primary-button span {
   display: table-cell;
   vertical-align: middle;
 }
 
+/******************************************************************************************
+****************************************** Login page *************************************
+******************************************************************************************/
+#login-page .form-help{
+  color: red;
+}
+
+#login-page button{
+  width: 80%;
+}
 /******************************************************************************************
 **************************************** Medical advise ***********************************
 ******************************************************************************************/
@@ -311,6 +343,79 @@
 #problem-form .add-problem-error{
   color: red;
 }
+/******************************************************************************************
+********************************* Patient page ************************************
+******************************************************************************************/
+#patient-page input{
+  width: 100%;
+}
+
+#patient-page .row{
+  margin-bottom: 15px;
+}
+
+#patient-page{
+  text-align: center;
+}
+
+#patient-page .col-xs-3{
+  text-align: left;
+}
+#create_new_patient_error{
+  color: red;
+  margin-bottom: 15px;
+}
+#create_new_patient_success{
+  color: green;
+  margin-bottom: 15px;
+}
+
+/******************************************************************************************
+********************************* Spinner ************************************
+******************************************************************************************/
+
+.spinner {
+  margin: auto;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
 /* body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;

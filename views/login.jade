@@ -1,0 +1,30 @@
+extends primaryNavbar
+block content
+	.container#login-page
+		.row
+			h3 Sign in
+			form(action='/login',method='post')
+				.form-group.row
+					.form-help
+						.col-sm-4.col-xs-4.col-sm-offset-4
+							| #{note}
+				.form-group.row
+					label.control-label.col-sm-1.col-sm-offset-3.col-xs-2.col-xs-offset-2(for='email') Username:
+					.col-sm-4.col-xs-4
+						input#username.form-control(name='username',type='text', placeholder='Enter username')
+				.form-group.row
+					label.control-label.col-sm-1.col-sm-offset-3.col-xs-2.col-xs-offset-2(for='pwd') Password:
+					.col-sm-4.col-xs-4
+						input#pwd.form-control(name='password',type='password', placeholder='Enter password')
+				.form-group.row
+					if adminLogin
+						input#role.form-control(name='role',type='hidden', value='admin')
+					else
+						label.control-label.col-sm-1.col-sm-offset-3.col-xs-2.col-xs-offset-2(for='role') Role:
+						.col-sm-4.col-xs-4
+							select.form-control(name='role')
+								option(value='patient') Patient
+								option(value='doctor') Doctor					
+				.form-group.row
+					.col-sm-offset-5.col-sm-2.col-xs-2.col-xs-offset-5
+						button.btn.btn-default(type='submit') Submit

@@ -1,10 +1,21 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
 var nodemailer = require('nodemailer');
+const url = require('url'); 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('contact');
+    if(!req.session.user){
+        res.redirect(url.format({
+            pathname:"/login",
+            query: {
+                "redirect": true,
+            }
+        }));
+        return;
+    }
+    res.render('contact');
 });
 
 // post route

@@ -878,6 +878,54 @@ let displayMedicalRecords = (medicalRecords) => {
 	displayProblemsList(problem_list);
 }	
 
+createNewPatient = (event) => {
+	console.log(event);
+	$("#create_new_patient_error").html("");
+	$("#create_new_patient_success").html("");
+	let form = event.target;
+	let first_name = $("input[name='patient_fist_name']").val();
+	let last_name = $("input[name='patient_last_name']").val();
+	let tel = $("input[name='patient_tel']").val();
+	let username = $("input[name='patient_username']").val();
+	let address = $("input[name='patient_address']").val();
+	let insurance = $("input[name='patient_insurance']").val();
+	let mail = $("input[name='patient_mail']").val();
+	let password = $("input[name='patient_password']").val();
+	let emergency = $("input[name='patient_emergency']").val();
+	let note = $("input[name='patient_note']").val();
+
+	var data = {
+		first_name, last_name, tel, username, address, 
+		insurance, mail, password, emergency, note
+	}
+	console.log(data);	
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/doctor/create_patient',
+	    	type: "post",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    data : JSON.stringify(data),
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('doctor-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		$("#create_new_patient_success").html("Patient with username " +
+	    			result.username + " and password " + result.password 
+	    			+ " is created. They now can log in and change their password");
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#create_new_patient_error").html(err.responseJSON.message);
+	    	}
+	    });
+
+	}
+	return false;
+}
+
 $(document).ready(function() {
   /*
 	call api get medical_records
@@ -886,7 +934,7 @@ $(document).ready(function() {
 	call api get severity_list
   */
   $("#patient_navbar li.active").removeClass("active");
-  $("#navbar_medicalrecords").addClass("active");
+  $("#navbar_patient").addClass("active");
   displayMedicalRecords(mecialRecords_dumb_data);
 });
 

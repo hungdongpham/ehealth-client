@@ -1,5 +1,57 @@
 var allergie_severity = [ "Moderate", "Moderate to severe", "Severe"];
+var medicalRecords_doctor_list_dumb_data = [
+	{
+		patient: {
+			id: "fsdkkwe239",
+			first_name: "Giacomo",
+			last_name: "Guilizzoni"
+		},
+		created_at: 1525859932000,
+		updated_at: 1525859932000,
+		created_by:{
+			id: "fsdfewwej",
+			first_name: "Tam",
+			last_name: "Nguyen",
+			speciality: "Orthodontic"
+		}
+	},
+	{
+		patient: {
+			id: "fsdkkwe239",
+			first_name: "Hung",
+			last_name: "Nguyen"
+		},
+		created_at: 1525859932000,
+		updated_at: 1525859932000,
+		created_by:{
+			id: "fsdfewwej",
+			first_name: "Tam",
+			last_name: "Nguyen",
+			speciality: "Orthodontic"
+		}
+	},
+	{
+		patient: {
+			id: "fsdkkwe239",
+			first_name: "Lam",
+			last_name: "Nguyen"
+		},
+		created_at: 1525859932000,
+		updated_at: 1525859932000,
+		created_by:{
+			id: "fsdfewwej",
+			first_name: "Tam",
+			last_name: "Nguyen",
+			speciality: "Orthodontic"
+		}
+	}
+]
 var mecialRecords_dumb_data = {
+	patient_info: {
+		id: "fsdkkwe239",
+		first_name: "Giacomo",
+		last_name: "Guilizzoni"
+	},
 	allergies: [
 		{
 			name:"Bee Stings",
@@ -80,6 +132,7 @@ let displayAllergies = (allergies) => {
 		$("#allergies-list").html("<h3>No allergies recorded</h3>")
 		return;
 	}
+
 	allergies.map( (allergie, index) => {
 		let id = "allergie_" + index;
 		let allergie_row = document.createElement("div");
@@ -153,7 +206,10 @@ let displayAllergies = (allergies) => {
 		}
 
 		function deleteAllergie(){
-			allergies.splice(index,1);
+			deleteMedicalRecord({
+				allergies: allergies[index]
+			});
+			// allergies.splice(index,1);
 			// to do: update new allergies list on server
 		}
 
@@ -252,14 +308,13 @@ let addNewAllergie = () => {
 		return false;
 
 	}
-	allergies.push({
-		name: new_allergie_name,
-		reaction: new_allergie_reaction,
-		severity: new_allergie_severity
+	addMedicalRecord({
+		allergies: {
+			name: new_allergie_name,
+			reaction: new_allergie_reaction,
+			severity: new_allergie_severity
+		}
 	})
-
-	displayAllergies(allergies);
-	return false;
 }
 
 /********************* Display immunizations *****************/
@@ -350,7 +405,10 @@ let displayImmunizations = (immunizations) => {
 		}
 
 		function deleteImmunization(){
-			immunizations.splice(index,1);
+			deleteMedicalRecord({
+				immunizations: immunizations[index]
+			});
+			// immunizations.splice(index,1);
 			// to do: update new allergies list on server
 		}
 
@@ -464,17 +522,15 @@ let addNewImmunization = () => {
 		return false;
 
 	}
-	immunizations.push({
-		name: new_immunization_name,
-		date: new_immunization_date,
-		type: new_immunization_type,
-		dose: new_immunization_dose,
-		instructions: new_immunization_instructions
+	addMedicalRecord({
+		immunizations: {
+			name: new_immunization_name,
+			date: new_immunization_date,
+			type: new_immunization_type,
+			dose: new_immunization_dose,
+			instructions: new_immunization_instructions
+		}
 	})
-
-	displayImmunizations(immunizations);
-	
-	return false;
 }
 
 /********************** Display procedures *******************/
@@ -554,7 +610,10 @@ let displayProcedures = (procedures) => {
 		}
 
 		function deleteProcedures(){
-			procedures.splice(index,1);
+			deleteMedicalRecord({
+				procedures: procedures[index]
+			});
+			// procedures.splice(index,1);
 			// to do: update new allergies list on server
 		}
 
@@ -654,16 +713,14 @@ let addNewProcedure = () => {
 		return false;
 
 	}
-	procedures.push({
-		procedure: new_procedure_name,
-		date: new_procedure_date,
-		provider: new_procedure_provider,
-		address: new_procedure_address,
+	addMedicalRecord({
+		procedures: {
+			procedure: new_procedure_name,
+			date: new_procedure_date,
+			provider: new_procedure_provider,
+			address: new_procedure_address,
+		}
 	})
-
-	displayProcedures(procedures);
-	
-	return false;
 }
 
 /********************** Display problems list *****************/
@@ -746,7 +803,10 @@ let displayProblemsList = (problems) => {
 		}
 
 		function deleteProblem(){
-			problems.splice(index,1);
+			deleteMedicalRecord({
+				problem_list: problems[index]
+			});
+			// problems.splice(index,1);
 			// to do: update new allergies list on server
 		}
 
@@ -846,17 +906,45 @@ let addNewProblem = () => {
 		return false;
 
 	}
-	problems.push({
-		observation: new_problem_observation,
-		status: new_problem_status,
-		date: new_problem_date,
-		comments: new_problem_comments,
+	addMedicalRecord({
+		problem_list: {
+			observation: new_problem_observation,
+			status: new_problem_status,
+			date: new_problem_date,
+			comments: new_problem_comments,
+		}
 	})
+}
 
+/********************** Display patient info *****************/
+let displayPatientInfo = (patientInfo) => {
+	$("#patient_info").empty();
+	if(!patientInfo){
+		$("#patient_info").html("<h3>No personal info recorded</h3>")
+		return;
+	}
 
-	displayProblemsList(problems);
-	
-	return false;
+	let row_lastName = document.createElement("div");
+	row_lastName.className = "row";
+	row_lastName.innerHTML =
+		"<div class='col-xs-3'>"+
+			"Last name: " +
+		"</div>" +
+		"<div class='col-xs-9 last_name'>"+
+			patientInfo.last_name +
+		"</div>"
+	$("#patient_info").append(row_lastName);
+
+	let row_firstName= document.createElement("div");
+	row_firstName.className = "row";
+	row_firstName.innerHTML =
+		"<div class='col-xs-3'>"+
+			"Last name: " +
+		"</div>" +
+		"<div class='col-xs-9 first_name'>"+
+			patientInfo.first_name +
+		"</div>"
+	$("#patient_info").append(row_firstName);
 }
 
 let displayMedicalRecords = (medicalRecords) => {
@@ -871,13 +959,179 @@ let displayMedicalRecords = (medicalRecords) => {
 
 	}
 
-	let { allergies, immunizations, procedures, lab_results, problem_list } = medicalRecords;
+	let { patient, allergies, immunizations, procedures, lab_results, problem_list } = medicalRecords;
+	displayPatientInfo(patient);
 	displayAllergies(allergies);
 	displayImmunizations(immunizations);
 	displayProcedures(procedures);
 	displayProblemsList(problem_list);
 }	
 
+let displayMedicalRecordsList = (medicalRecordsList) => {
+	$("#medical-records-list").empty();
+	if(!medicalRecordsList || medicalRecordsList.length<=0){
+		$("#medical-records-list").html("<h3>No medical recorded</h3>")
+		return;
+	}
+
+	let table = document.createElement("table");
+	table.className= "table table-striped";
+	table.innerHTML = 
+		"<thead class='thead-light'>" + 
+			"<tr>" +
+				"<td>Patient</td>" +
+				"<td>Created date</td>" +
+				"<td>Modified date</td>" +
+				"<td>Created by</td>" +
+			"</tr>" +
+		"</thead>";
+
+	let tbody = document.createElement("tbody");
+
+	medicalRecordsList.map( (record, index) => {
+		let record_tr = document.createElement("tr");
+		record_tr.style.cursor = "pointer";
+		record_tr.addEventListener("dblclick", (evt) => {
+			window.location.href = HOST + "/medicalrecords/detail?id=" + record._id;
+		})
+
+		let patient_td = document.createElement("td");
+		patient_td.innerHTML = record.patient.first_name + " " + record.patient.last_name;
+		record_tr.appendChild(patient_td);
+
+		let createdDate_td = document.createElement("td");
+		createdDate_td.innerHTML = moment(record.created_at).format('DD/MM/YYYY');;
+		record_tr.appendChild(createdDate_td);
+
+		let updatedDate_td = document.createElement("td");
+		updatedDate_td.innerHTML = moment(record.updated_at).format('DD/MM/YYYY');
+		record_tr.appendChild(updatedDate_td);
+
+		let doctor_td = document.createElement("td");
+		doctor_td.innerHTML = record.created_by.first_name + " " + record.created_by.last_name;
+		record_tr.appendChild(doctor_td);
+
+		tbody.appendChild(record_tr);
+	})
+
+	table.appendChild(tbody);
+	$("#medical-records-list").append(table);
+}
+
+let getMedicalRecordsList = () => {
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/doctor/medical_records',
+	    	type: "get",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('doctor-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		displayMedicalRecordsList(result);
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-records-list").html(err.responseJSON.message);
+	    	}
+	    });
+
+	} else {
+		$("#medical-records-list").html("There is something wrong, please try sign out and sign in again ");
+	}
+}
+
+let getMedicalRecordDetail = (record_id) => {
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/medical_record/' + record_id,
+	    	type: "get",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+	    	success: function( result ) {
+	    		displayMedicalRecords(result);
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			displayMedicalRecords();
+	    	}
+	    });
+
+	} else {
+		$("#medical-records-list").html("There is something wrong, please try sign out and sign in again ");
+	}
+}
+
+let addMedicalRecord = (value) => {
+	let record_id = getParameterByName('id')
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/medical_record/' + record_id,
+	    	type: "post",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    data : JSON.stringify(value),
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('doctor-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		console.log(result);
+	    		displayMedicalRecords(result);
+	    		// $("#create_new_patient_success").html("Patient with username " +
+	    		// 	result.username + " and password " + result.password 
+	    		// 	+ " is created. They now can log in and change their password");
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-records-list").html("There is something wrong, please try sign out and sign in again ");
+	    	}
+	    });
+
+	} else {
+		$("#medical-records-list").html("There is something wrong, please try sign out and sign in again ");
+	}
+	return false;
+}
+
+let deleteMedicalRecord = (value) => {
+	let record_id = getParameterByName('id')
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/medical_record/' + record_id +"/delete",
+	    	type: "post",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    data : JSON.stringify(value),
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('doctor-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		console.log(result);
+	    		displayMedicalRecords(result);
+	    		// $("#create_new_patient_success").html("Patient with username " +
+	    		// 	result.username + " and password " + result.password 
+	    		// 	+ " is created. They now can log in and change their password");
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-records-list").html("There is something wrong, please try sign out and sign in again ");
+	    	}
+	    });
+
+	} else {
+		$("#medical-records-list").html("There is something wrong, please try sign out and sign in again ");
+	}
+	return false;
+}
 $(document).ready(function() {
   /*
 	call api get medical_records
@@ -885,8 +1139,36 @@ $(document).ready(function() {
   /*
 	call api get severity_list
   */
+  console.log(user);
+  console.log(view);
+
   $("#patient_navbar li.active").removeClass("active");
   $("#navbar_medicalrecords").addClass("active");
-  displayMedicalRecords(mecialRecords_dumb_data);
+  if(view=="records_list"){
+  	getMedicalRecordsList();
+  	// displayMedicalRecordsList(medicalRecords_doctor_list_dumb_data);
+  }
+  if(view=="record_detail"){
+  	let record_id = getParameterByName('id')
+  	getMedicalRecordDetail(record_id);
+  	// displayMedicalRecords(mecialRecords_dumb_data);
+  }
+
+  if(view=="create_record"){
+  	mecialRecords_dumb_data = {
+  		patient: {
+  			id: "fsdkkwe239",
+  			first_name: "Giacomo",
+  			last_name: "Guilizzoni"
+  		},
+  		allergies: [],
+  		immunizations: [],
+  		procedures: [],
+  		lab_results: [],
+  		problem_list: []
+  	}
+  	displayMedicalRecords(mecialRecords_dumb_data);
+  }
+  
 });
 

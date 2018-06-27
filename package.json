@@ -6,13 +6,17 @@
     "start": "node ./bin/www >> log.txt &"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-session": "~1.15.6",
     "jade": "~1.11.0",
     "morgan": "~1.8.1",
+    "request": "^2.69.0",
     "serve-favicon": "~2.4.2",
-    "nodemailer": "*"
+    "nodemailer": "*",
+    "underscore": "^1.8.3"
   }
 }

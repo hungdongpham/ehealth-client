@@ -5,15 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
+var session = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var about = require('./routes/about');
 var contact = require('./routes/contact');
 var detail = require('./routes/detail');
-var doctor_medicalrecords = require('./routes/doctor_medicalrecords');
-var patient_medicaladvises = require('./routes/patient_medicaladvises');
-var patient_medicalrecords = require('./routes/patient_medicalrecords');
+var medicaladvises = require('./routes/medicaladvises');
+var medicalrecords = require('./routes/medicalrecords');
+var patient = require('./routes/patient');
+var login = require('./routes/login');
+
 var app = express();
 
 // view engine setup
@@ -27,15 +30,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: "a"}));
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/about', about);
 app.use('/contact', contact);
 app.use('/detail', detail);
-app.use('/doctor_medicalrecords', doctor_medicalrecords);
-app.use('/patient_medicaladvises', patient_medicaladvises);
-app.use('/patient_medicalrecords', patient_medicalrecords);
+app.use('/medicaladvises', medicaladvises);
+app.use('/medicalrecords', medicalrecords);
+app.use('/patient', patient);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

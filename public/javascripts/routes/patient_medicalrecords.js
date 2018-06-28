@@ -1,68 +1,4 @@
-var allergie_severity = [ "Moderate", "Moderate to severe", "Severe"];
-var mecialRecords_dumb_data = {
-	allergies: [
-		{
-			name:"Bee Stings",
-			reaction: "Anaphylactic Shock",
-			severity: "Severe"
-		},
-		{
-			name:"Penicillin",
-			reaction: "Hives",
-			severity: "Moderate to severe"
-		},
-		{
-			name:"Codeine",
-			reaction: "Shortness of Breath",
-			severity: "Moderate"
-		}
-	],
-	immunizations: [
-		{
-			name:"Inﬂuenza virus vaccine, IM",
-			date: "May 2001",
-			type: "Intramuscular injection",
-			dose: "50 /mcg",
-			instructions: "Possible ﬂu-like symptoms for three days"
-		},
-		{
-			name:"Tetanus and diphtheriatoxoids, IM",
-			date: "April 2000",
-			type: "Intramuscular injection",
-			dose: "50 /mcg",
-			instructions: "Mild pain or soreness in the local area"
-		},
-	],
-	procedures: [
-		{
-			procedure: "Laparoscopic Cholecystectomy",
-			date: "September 28, 2002",
-			provider: "Dr. Bala Venktaraman",
-			address: "Ashby Medical Center",
-		}, 
-		{
-			procedure: "Cesarian Section",
-			date: "March 22, 2002",
-			provider: "Dr. Tiffany Martinez",
-			address: "Ashby Medical Center",
-		}
-	],
-	lab_results: [],
-	problem_list: [
-		{
-			observation: "Ankle Sprain",
-			status: "Active",
-			date: "March 28, 2005",
-			comments: "Slipped on ice and fell" 
-		},
-		{
-			observation: "Cholecystitis",
-			status: "Resolved",
-			date: "September 28, 2002",
-			comments: "Surgery postponed until after delivery" 
-		}
-	]
-}
+
 
 /******************************************************************
 *********************** Display medical records *******************
@@ -73,22 +9,25 @@ var mecialRecords_dumb_data = {
 
 let displayAllergies = (allergies) => {
 	$("#allergies-list").empty();
-	allergie_severity.map( (sev) => {
-		$("#allergie-form select[name='new_allergie_severity']").append("<option value='"+ sev +"''>"+ sev +"</option>");
-	})
 	if(!allergies || allergies.length<=0){
 		$("#allergies-list").html("<h3>No allergies recorded</h3>")
 		return;
 	}
+	let new_row;
 	allergies.map( (allergie, index) => {
+		if(index%2==0){
+			new_row = document.createElement("div");
+			new_row.className = "row";
+			$("#allergies-list").append(new_row);
+		}
 		let id = "allergie_" + index;
-		let allergie_row = document.createElement("div");
-		allergie_row.className = "row";
-		allergie_row.id = id;
+		let allergie_col = document.createElement("div");
+		allergie_col.className = "col-xs-6";
+		// allergie_row.id = id;
 
 		//container
 		let allergieContainer = document.createElement("div");
-		allergieContainer.className = "allergie-container col-xs-10";
+		allergieContainer.className = "allergie-container col-xs-11";
 
 		let row_name = document.createElement("div");
 		row_name.className = "row";
@@ -119,147 +58,14 @@ let displayAllergies = (allergies) => {
 				"Severity: " +
 			"</div>" +
 			"<div class='col-xs-9 allergie-severity'>"+
-				"<select name='allergie_severity' disabled value='"+ allergie.severity +"'>";
-
-		allergie_severity.map( (sev) => {
-			if(sev == allergie.severity ){
-				row_severity_HTML +=
-					"<option selected value='"+ sev +"''>"+ sev +"</option>"
-			} else{
-				row_severity_HTML +=
-					"<option value='"+ sev +"''>"+ sev +"</option>"
-			}
-			
-		})
-
-		row_severity_HTML +=
-				"</select>"
+				"<input type='text' name='allergie_severity' disabled value='"+ allergie.severity +"' />" +
 			"</div>"
 		row_severity.innerHTML = row_severity_HTML;
 		allergieContainer.appendChild(row_severity);
-		allergie_row.appendChild(allergieContainer);
-
-		//button
-		function enableEditAllergieInfo(){
-			$("#" + id + " input[disabled]").removeAttr("disabled");
-			$("#" + id + " select[disabled]").removeAttr("disabled");
-			$("#" + id + " .edit-button").html("<span class='glyphicon glyphicon-ok'></span>");
-			$("#" + id + " .edit-button").removeClass("edit-button").addClass("check-button");
-			$("#" + id + " .check-button").on('click', function(){
-				console.log("on click");
-				submitChange();
-				displayAllergies(allergies);
-			});;
-		}
-
-		function deleteAllergie(){
-			allergies.splice(index,1);
-			// to do: update new allergies list on server
-		}
-
-		function submitChange(){
-			console.log(allergies[index]);
-			let allergie_name = $("#" + id + " input[name='allergie_name']").val();
-			let allergie_reaction = $("#" + id + " input[name='allergie_reaction']").val();
-			let allergie_severity = $("#" + id + " select[name='allergie_severity']").val();
-			allergies[index] = {
-				name: allergie_name,
-				reaction: allergie_reaction,
-				severity: allergie_severity
-			}
-			// to do: update new allergies list on server
-		}
-		let allergieButtonList = document.createElement("div");
-		allergieButtonList.className = "allergie-button col-xs-2";
-
-		let editButtonContainer = document.createElement("div");
-		editButtonContainer.className = "allergie-button-edit row";
-
-		let editButton = document.createElement("button");
-		editButton.type = "button";
-		editButton.className = "btn btn-default btn-sm edit-button";
-		editButton.innerHTML = "<span class='glyphicon glyphicon-edit'></span>";
-		editButton.addEventListener("click", () => {
-			enableEditAllergieInfo();
-		})
-		editButtonContainer.appendChild(editButton);
-		allergieButtonList.appendChild(editButtonContainer);
-
-
-		let deleteButtonContainer = document.createElement("div");
-		deleteButtonContainer.className = "allergie-button-delete row";
-
-		let deleteButton = document.createElement("button");
-		deleteButton.type = "button";
-		deleteButton.className = "btn btn-default btn-sm delete-button";
-		deleteButton.innerHTML = "<span class='glyphicon glyphicon-trash'></span>";
-		deleteButton.addEventListener("click", () => {
-			deleteAllergie();
-			displayAllergies(allergies);
-		})
-		deleteButtonContainer.appendChild(deleteButton);
-		allergieButtonList.appendChild(deleteButtonContainer);
-
-		// allergieButtonList.innerHTML = 
-		// 	"<div class='row'>" +
-		// 		"<button type='button' class='btn btn-default btn-sm'>" +
-  //         			"<span class='glyphicon glyphicon-edit'></span>" +
-  //       		"</button>" +
-		// 	"</div>" +
-		// 	"<div class='row'>" +
-		// 		"<button type='button' class='btn btn-default btn-sm'>" +
-  //         			"<span class='glyphicon glyphicon-trash'></span>" +
-  //       		"</button>" +
-		// 	"</div>";
-
-		allergie_row.appendChild(allergieButtonList);
-		$("#allergies-list").append(allergie_row);
+		allergie_col.appendChild(allergieContainer);
+		new_row.appendChild(allergie_col);
+		
 	})
-}
-
-let addNewAllergie = () => {
-	//after this I need an API for submit new allergie
-	let { allergies } = mecialRecords_dumb_data;
-	if(!allergies){
-		allergies = [];
-	}
-	let new_allergie_name = $("#allergie-form input[name='new_allergie_name']").val();
-	let new_allergie_reaction = $("#allergie-form input[name='new_allergie_reaction']").val();
-	let new_allergie_severity = $("#allergie-form select[name='new_allergie_severity']").val();
-	if(!new_allergie_name 
-		|| !_.isString(new_allergie_name) 
-		|| new_allergie_name.trim()==""){
-		
-		$("#allergie-form .add-allergie-error").html("Enter allergie name");
-		return false;
-
-	}
-
-	if(!new_allergie_reaction 
-		|| !_.isString(new_allergie_reaction) 
-		|| new_allergie_reaction.trim()==""){
-		
-		$("#allergie-form .add-allergie-error").html("Enter allergie reaction");
-		return false;
-
-	}
-
-	if(!new_allergie_severity 
-		|| !_.isString(new_allergie_severity) 
-		|| new_allergie_severity.trim()==""){
-		
-		$("#allergie-form .add-allergie-error").html("Enter allergie severity");
-		return false;
-
-	}
-	allergies.push({
-		name: new_allergie_name,
-		reaction: new_allergie_reaction,
-		severity: new_allergie_severity
-	})
-
-	displayAllergies(allergies);
-	return false;
 }
 
 /********************* Display immunizations *****************/
@@ -408,75 +214,6 @@ let displayImmunizations = (immunizations) => {
 
 }
 
-let addNewImmunization = () => {
-	//after this I need an API for submit new allergie
-	let { immunizations } = mecialRecords_dumb_data;
-	if(!immunizations){
-		immunizations = [];
-	}
-	let new_immunization_name = $("#immunization-form input[name='new_immunization_name']").val();
-	let new_immunization_date = $("#immunization-form input[name='new_immunization_date']").val();
-	let new_immunization_type = $("#immunization-form input[name='new_immunization_type']").val();
-	let new_immunization_dose = $("#immunization-form input[name='new_immunization_dose']").val();
-	let new_immunization_instructions = $("#immunization-form input[name='new_immunization_instructions']").val();
-
-	if(!new_immunization_name 
-		|| !_.isString(new_immunization_name) 
-		|| new_immunization_name.trim()==""){
-		
-		$("#immunization-form .add-immunization-error").html("Enter immunization name");
-		return false;
-
-	}
-
-	if(!new_immunization_date
-		|| !_.isString(new_immunization_date) 
-		|| new_immunization_date.trim()==""){
-		
-		$("#immunization-form .add-immunization-error").html("Enter immunization date");
-		return false;
-
-	}
-
-	if(!new_immunization_type
-		|| !_.isString(new_immunization_type) 
-		|| new_immunization_type.trim()==""){
-		
-		$("#immunization-form .add-immunization-error").html("Enter immunization type");
-		return false;
-
-	}
-
-	if(!new_immunization_dose 
-		|| !_.isString(new_immunization_dose) 
-		|| new_immunization_dose.trim()==""){
-		
-		$("#immunization-form .add-immunization-error").html("Enter immunization dose");
-		return false;
-
-	}
-
-	if(!new_immunization_instructions 
-		|| !_.isString(new_immunization_instructions) 
-		|| new_immunization_instructions.trim()==""){
-		
-		$("#immunization-form .add-immunization-error").html("Enter immunization instructions");
-		return false;
-
-	}
-	immunizations.push({
-		name: new_immunization_name,
-		date: new_immunization_date,
-		type: new_immunization_type,
-		dose: new_immunization_dose,
-		instructions: new_immunization_instructions
-	})
-
-	displayImmunizations(immunizations);
-	
-	return false;
-}
-
 /********************** Display procedures *******************/
 let displayProcedures = (procedures) => {
 	$("#procedures-list").empty();
@@ -608,62 +345,6 @@ let displayProcedures = (procedures) => {
 		$("#procedures-list").append(procedure_row);
 	})
 
-}
-
-let addNewProcedure = () => {
-	//after this I need an API for submit new allergie
-	let { procedures } = mecialRecords_dumb_data;
-	if(!procedures){
-		procedures = [];
-	}
-	let new_procedure_name = $("#procedure-form input[name='new_procedure_name']").val();
-	let new_procedure_date = $("#procedure-form input[name='new_procedure_date']").val();
-	let new_procedure_provider = $("#procedure-form input[name='new_procedure_provider']").val();
-	let new_procedure_address = $("#procedure-form input[name='new_procedure_address']").val();
-
-	if(!new_procedure_name 
-		|| !_.isString(new_procedure_name) 
-		|| new_procedure_name.trim()==""){
-		
-		$("#procedure-form .add-procedure-error").html("Enter procedure name");
-		return false;
-
-	}
-
-	if(!new_procedure_date
-		|| !_.isString(new_procedure_date) 
-		|| new_procedure_date.trim()==""){
-		
-		$("#procedure-form .add-procedure-error").html("Enter procedure date");
-		return false;
-
-	}
-	if(!new_procedure_provider 
-		|| !_.isString(new_procedure_provider) 
-		|| new_procedure_provider.trim()==""){
-		
-		$("#procedure-form .add-procedure-error").html("Enter procedure provider");
-		return false;
-
-	}
-	if(!new_procedure_address 
-		|| !_.isString(new_procedure_address) 
-		|| new_procedure_address.trim()==""){
-		
-		$("#procedure-form .add-procedure-error").html("Enter procedure address");
-		return false;
-
-	}
-	procedures.push({
-		procedure: new_procedure_name,
-		date: new_procedure_date,
-		provider: new_procedure_provider,
-		address: new_procedure_address,
-	})
-
-	displayProcedures(procedures);
-	
-	return false;
 }
 
 /********************** Display problems list *****************/
@@ -802,63 +483,6 @@ let displayProblemsList = (problems) => {
 
 }
 
-let addNewProblem = () => {
-	//after this I need an API for submit new allergie
-	let  problems  = mecialRecords_dumb_data.problem_list;
-	if(!problems){
-		problems = [];
-	}
-	let new_problem_observation = $("#problem-form input[name='new_problem_observation']").val();
-	let new_problem_status = $("#problem-form  input[name='new_problem_status']").val();
-	let new_problem_date = $("#problem-form  input[name='new_problem_date']").val();
-	let new_problem_comments= $("#problem-form 	 input[name='new_problem_comments']").val();
-
-	if(!new_problem_observation 
-		|| !_.isString(new_problem_observation) 
-		|| new_problem_observation.trim()==""){
-		
-		$("#problem-form .add-problem-error").html("Enter problem observation");
-		return false;
-
-	}
-
-	if(!new_problem_status
-		|| !_.isString(new_problem_status) 
-		|| new_problem_status.trim()==""){
-		
-		$("#problem-form .add-problem-error").html("Enter problem status");
-		return false;
-
-	}
-	if(!new_problem_date 
-		|| !_.isString(new_problem_date) 
-		|| new_problem_date.trim()==""){
-		
-		$("#problem-form .add-problem-error").html("Enter problem date");
-		return false;
-
-	}
-	if(!new_problem_comments 
-		|| !_.isString(new_problem_comments) 
-		|| new_problem_comments.trim()==""){
-		
-		$("#problem-form .add-problem-error").html("Enter problem comments");
-		return false;
-
-	}
-	problems.push({
-		observation: new_problem_observation,
-		status: new_problem_status,
-		date: new_problem_date,
-		comments: new_problem_comments,
-	})
-
-
-	displayProblemsList(problems);
-	
-	return false;
-}
-
 let displayMedicalRecords = (medicalRecords) => {
 	if(!medicalRecords){
 		mecialRecords_dumb_data = {
@@ -878,6 +502,31 @@ let displayMedicalRecords = (medicalRecords) => {
 	displayProblemsList(problem_list);
 }	
 
+let getMedicalRecordsList = () => {
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/patient/medical_records',
+	    	type: "get",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('patient-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		displayMedicalRecords(result);
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-records").html(err.responseJSON.message);
+	    	}
+	    });
+
+	} else {
+		$("#medical-records").html("There is something wrong, please try sign out and sign in again ");
+	}
+}
 $(document).ready(function() {
   /*
 	call api get medical_records
@@ -887,6 +536,7 @@ $(document).ready(function() {
   */
   $("#patient_navbar li.active").removeClass("active");
   $("#navbar_medicalrecords").addClass("active");
-  displayMedicalRecords(mecialRecords_dumb_data);
+  getMedicalRecordsList();
+  // displayMedicalRecords(mecialRecords_dumb_data);
 });
 

@@ -104,8 +104,8 @@ let createMedicalAdviseDate = (medicalAdvise) => {
 	let medicalAdviseDateContainer = document.createElement("div");
 	let medicalAdviseImg = document.createElement("img");
 	let medicalAdviseDate = document.createElement("span");
-	medicalAdviseDate.innerHTML = (medicalAdvise && medicalAdvise.date)? 
-		moment(medicalAdvise.date).format("DD/MM/YYYY") : "";
+	medicalAdviseDate.innerHTML = (medicalAdvise && medicalAdvise.created_at)? 
+		moment(medicalAdvise.created_at).format("DD/MM/YYYY") : "";
 
 	medicalAdviseDateContainer.appendChild(medicalAdviseImg);
 	medicalAdviseDateContainer.appendChild(medicalAdviseDate);
@@ -113,6 +113,81 @@ let createMedicalAdviseDate = (medicalAdvise) => {
 	return medicalAdviseDateContainer;
 }
 
+let createAnswerForm = (medicalAdvise) => {
+	let div = document.createElement('div');
+	div.className= 'answer-form';
+	div.style.textAlign = "center";
+
+	if(medicalAdvise.status==1){
+		let reopenButton = document.createElement('button');
+		reopenButton.innerHTML = "Re-open question";
+
+		let reopenButtonContainer = document.createElement("div");
+		reopenButtonContainer.className = "col-xs-4 col-xs-offset-4";
+		reopenButton.addEventListener('click', (evt) => {
+			updateMedicalAdvise({
+				status: 0
+			})
+		})
+
+		div.innerHTML="<div class='row'>"+
+			"This question has been close. Do you want to re-open it?" +
+			"</div>";
+		reopenButtonContainer.appendChild(reopenButton);
+		div.appendChild(reopenButtonContainer);
+	} else{
+		div.innerHTML = 
+			"<div class='row'>" +
+				"<div class='col-xs-12'> " +
+					"<div id='add-answer-error' style='color:red'></div>"
+				"</div>"
+			"</div>"
+		let textArea = document.createElement("textarea");
+		textArea.setAttribute("cols", "40");
+		textArea.setAttribute("rows", "5");
+		textArea.setAttribute("name", "new_advise_answer");
+		textArea.setAttribute("placeholder", "Answer....")
+		div.appendChild(textArea);
+
+		let buttonContainer = document.createElement("div");
+		buttonContainer.className = "col-xs-2 col-xs-offset-10";
+		let submitButton = document.createElement("button");
+		submitButton.innerHTML="Submit";
+
+		submitButton.addEventListener('click', (evt) => {
+			let new_advise_answer =  $(".answer-form textarea[name='new_advise_answer']").val();
+			if(!new_advise_answer 
+				|| !_.isString(new_advise_answer) 
+				|| new_advise_answer.trim()==""){
+					
+				$("#add-answer-error").html("Enter answer");
+				return ;
+			}
+			answerMedicalAdvise({
+				content: new_advise_answer
+			})
+
+		})
+		buttonContainer.appendChild(submitButton);
+		div.appendChild(buttonContainer);
+
+		let closeButtonContainer = document.createElement("div");
+		closeButtonContainer.className = "col-xs-4 col-xs-offset-4";
+		let closeButton = document.createElement("button");
+		closeButton.innerHTML="Close question";
+
+		closeButton.addEventListener('click', (evt) => {
+			updateMedicalAdvise({
+				status: 1
+			})
+
+		})
+		closeButtonContainer.appendChild(closeButton);
+		div.appendChild(closeButtonContainer);
+	}
+
+	return div;
+}
 let createMedicalAdvisePanel = (medicalAdvise) => {
 	let medicalAdvisePanel = document.createElement("div");
 	medicalAdvisePanel.className = "panel panel-default";
@@ -126,7 +201,10 @@ let createMedicalAdvisePanel = (medicalAdvise) => {
 	let medicalAdvisePanelBody = document.createElement("div");
 	medicalAdvisePanelBody.className = "panel-body";
 	medicalAdvisePanelBody.appendChild(createMedicalAdviseDetail(medicalAdvise));
+	medicalAdvisePanelBody.appendChild(createAnswerForm(medicalAdvise));
+
 	medicalAdvisePanel.appendChild(medicalAdvisePanelBody);
+
 
 	let medicalAdvisePanelFooter = document.createElement("div");
 	medicalAdvisePanelFooter.className = "panel-footer";
@@ -169,8 +247,8 @@ let createMedicalAdviseDetail = (medicalAdvise) => {
 
 			let avatarContainer = document.createElement("div");
 			avatarContainer.className = "col-xs-1 answer-avatar";
-			let avatar = (answer.author && answer.author.avatar && answer.author.avatar.trim()!="")? 
-				answer.author.avatar : "images/default-avatar.png"
+			let avatar = (answer.doctor && answer.doctor.avatar && answer.doctor.avatar.trim()!="")? 
+				answer.author.avatar : "/images/default-avatar.png"
 			let avatarImg = document.createElement("img");
 			avatarImg.setAttribute("src", avatar);
 			avatarImg.style.width="100%";
@@ -181,7 +259,7 @@ let createMedicalAdviseDetail = (medicalAdvise) => {
 			adviseContainer.innerHTML= 
 				"<div class='row answer-info'>" +
 					"<div class='col-xs-10'>Dr. " +
-						answer.author.name +
+						answer.doctor.first_name + " " + answer.doctor.last_name +
 					"</div>"+
 					"<div class='col-xs-2'>" +
 						moment(answer.date).format("DD/MM/YYYY") +
@@ -199,21 +277,18 @@ let createMedicalAdviseDetail = (medicalAdvise) => {
 			answersContent.appendChild(answerRow);
 		}
 	} else{
-		let content = "Your question are was sent";
-		if(medicalAdvise && medicalAdvise.assignedTo && medicalAdvise.assignedTo.name)
-			content += " to Dr. "  + medicalAdvise.assignedTo.name;
-		content += "! Please patiently wait for the answer.";
+		// let content = "This question has no answer yet.";
 
-		answersContent.innerHTML = content;
+		// answersContent.innerHTML = content;
 	}
 
 	medicalAdviseDetail.appendChild(answersContent);
 	return medicalAdviseDetail;
 }
 
-let displayMedicalAdvises = (listMedicalAdvisesArray) => {
-	for(let i=0; i<listMedicalAdvisesArray.length; i++){
-		let medicalAdvise = listMedicalAdvisesArray[i];
+let displayMedicalAdvise = (medicalAdvise) => {
+	$("#medical-advises").html("");
+	// for(let i=0; i<listMedicalAdvisesArray.length; i++){
 		let medicalAdviseItem = document.createElement("div");
 		medicalAdviseItem.className = "item";
 
@@ -236,7 +311,7 @@ let displayMedicalAdvises = (listMedicalAdvisesArray) => {
 		medicalAdviseItem.appendChild(col_detail);
 
 		$("#medical-advises").append(medicalAdviseItem);
-	}
+	// }
 }
 
 let displayMedicalAdvisesList = (medicalAdvisesList) => {
@@ -251,13 +326,12 @@ let displayMedicalAdvisesList = (medicalAdvisesList) => {
 	table.innerHTML = 
 		"<thead class='thead-light'>" + 
 			"<tr>" +
-				"<td>Name</td>" +
+				"<td>Content</td>" +
 				"<td>Patient</td>" +
 				"<td>Created date</td>" +
 				"<td>Modified date</td>" +
 				"<td>Speciality</td>" +
 				"<td>Status</td>" +
-				"<td>Created by</td>" +
 			"</tr>" +
 		"</thead>";
 
@@ -267,11 +341,11 @@ let displayMedicalAdvisesList = (medicalAdvisesList) => {
 		let record_tr = document.createElement("tr");
 		record_tr.style.cursor = "pointer";
 		record_tr.addEventListener("dblclick", (evt) => {
-			window.location.href = "http://localhost:3000/medicaladvises/detail"
+			window.location.href = HOST + "/medicaladvises/detail?id=" + advise._id;
 		})
 
 		let name_td = document.createElement("td");
-		name_td.innerHTML = advise.name;
+		name_td.innerHTML = advise.content;
 		record_tr.appendChild(name_td);
 
 		let patient_td = document.createElement("td");
@@ -294,10 +368,6 @@ let displayMedicalAdvisesList = (medicalAdvisesList) => {
 		status_td.innerHTML = (advise.status==1)? "Completed" : "In progress";
 		record_tr.appendChild(status_td);
 
-		let doctor_td = document.createElement("td");
-		doctor_td.innerHTML = advise.created_by.first_name + " " + advise.created_by.last_name;
-		record_tr.appendChild(doctor_td);
-
 		tbody.appendChild(record_tr);
 	})
 
@@ -305,6 +375,114 @@ let displayMedicalAdvisesList = (medicalAdvisesList) => {
 	$("#medical-advises").append(table);
 }
 
+let getMedicalAdvisesList = () => {
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/doctor/medical_advises',
+	    	type: "get",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('doctor-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		displayMedicalAdvisesList(result);
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-advises").html(err.responseJSON.message);
+	    	}
+	    });
+
+	} else {
+		$("#medical-advises").html("There is something wrong, please try sign out and sign in again ");
+	}
+}
+
+let getMedicalAdviseDetail= (advise_id) => {
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/medical_advise/' + advise_id,
+	    	type: "get",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+	    	success: function( result ) {
+	    		displayMedicalAdvise(result);
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-records-list").html(err.responseJSON.message);
+	    	}
+	    });
+
+	} else {
+		$("#medical-advises").html("There is something wrong, please try sign out and sign in again ");
+	}
+}
+
+let updateMedicalAdvise = (value) => {
+	let advise_id = getParameterByName('id')
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/medical_advise/' + advise_id +"/update",
+	    	type: "post",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    data : JSON.stringify(value),
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('doctor-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		console.log(result);
+	    		displayMedicalAdvise(result);
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-advises").html("There is something wrong, please try sign out and sign in again ");
+	    	}
+	    });
+
+	} else {
+		$("#medical-advises").html("There is something wrong, please try sign out and sign in again ");
+	}
+	return false;
+}
+
+let answerMedicalAdvise = (value) => {
+	let advise_id = getParameterByName('id')
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/medical_advise/' + advise_id +"/answer",
+	    	type: "post",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    data : JSON.stringify(value),
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('doctor-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		console.log(result);
+	    		displayMedicalAdvise(result);
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-advises").html("There is something wrong, please try sign out and sign in again ");
+	    	}
+	    });
+
+	} else {
+		$("#medical-advises").html("There is something wrong, please try sign out and sign in again ");
+	}
+	return false;
+}
 $(document).ready(function() {
   /*
 	call api get medical_advises
@@ -325,10 +503,12 @@ $(document).ready(function() {
   });
 
   if(view=="advises_list"){
-  	displayMedicalAdvisesList(medicalAdvises_doctor_list_dumb_data);
+  	getMedicalAdvisesList();
+  	// displayMedicalAdvisesList(medicalAdvises_doctor_list_dumb_data);
   }
   if(view=="advise_detail"){
-  	displayMedicalAdvises(listMedicalAdvisesArray);
+  	let advise_id = getParameterByName('id')
+  	getMedicalAdviseDetail(advise_id);
   }
 
   

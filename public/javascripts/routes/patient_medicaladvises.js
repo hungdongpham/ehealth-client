@@ -1,45 +1,4 @@
-var mecialAdvises_dumb_data = {
-	_das3dsda: {
-		category: "Dietician",
-		content:"Whats the diet to get rid of Pcos?",
-		assignedTo: {
-			id: "_kjkjkkmsd",
-			name: "Nasim Arshad"
-		},
-		date: 1519867829000,
-		status: 1,
-		answers: [
-			{
-				content: "Eat healthy!",
-				date: 1519902353000,
-				author: {
-					id: "_kjkjkkmsd",
-					name: "Nasim Arshad",
-					avatar: ""
-				}
-			},
-			{
-				content: "LOL no way",
-				date: 1520036226000,
-				author: {
-					id: "_ssmbciey",
-					name: "John Baldwin",
-					avatar: ""
-				}
-			}
-		]
-	},
-	_fsfkrwerm: {
-		category: "Neurosurgeon",
-		content:"A really long question about neurosurgeon",
-		date: 1520757686000,
-		status: 0,
-		assignedTo: {
-			id: "_kjkjkkmsd",
-			name: "Nasim Arshad"
-		}
-	}
-}
+
 
 /******************************************************************
 *********************** Display medical advises *******************
@@ -48,8 +7,8 @@ let createMedicalAdviseDate = (medicalAdvise) => {
 	let medicalAdviseDateContainer = document.createElement("div");
 	let medicalAdviseImg = document.createElement("img");
 	let medicalAdviseDate = document.createElement("span");
-	medicalAdviseDate.innerHTML = (medicalAdvise && medicalAdvise.date)? 
-		moment(medicalAdvise.date).format("DD/MM/YYYY") : "";
+	medicalAdviseDate.innerHTML = (medicalAdvise && medicalAdvise.created_at)? 
+		moment(medicalAdvise.created_at).format("DD/MM/YYYY") : "";
 
 	medicalAdviseDateContainer.appendChild(medicalAdviseImg);
 	medicalAdviseDateContainer.appendChild(medicalAdviseDate);
@@ -113,8 +72,8 @@ let createMedicalAdviseDetail = (medicalAdvise) => {
 
 			let avatarContainer = document.createElement("div");
 			avatarContainer.className = "col-xs-1 answer-avatar";
-			let avatar = (answer.author && answer.author.avatar && answer.author.avatar.trim()!="")? 
-				answer.author.avatar : "images/default-avatar.png"
+			let avatar = (answer.doctor && answer.doctor.avatar && answer.doctor.avatar.trim()!="")? 
+				answer.doctor.avatar : "images/default-avatar.png"
 			let avatarImg = document.createElement("img");
 			avatarImg.setAttribute("src", avatar);
 			avatarImg.style.width="100%";
@@ -125,10 +84,10 @@ let createMedicalAdviseDetail = (medicalAdvise) => {
 			adviseContainer.innerHTML= 
 				"<div class='row answer-info'>" +
 					"<div class='col-xs-10'>Dr. " +
-						answer.author.name +
+						answer.doctor.last_name + " " + answer.doctor.first_name +
 					"</div>"+
 					"<div class='col-xs-2'>" +
-						moment(answer.date).format("DD/MM/YYYY") +
+						moment(answer.created_at).format("DD/MM/YYYY") +
 					"</div>" +
 				"</div>" +
 				"<div class='row answer-content'>" +
@@ -143,7 +102,7 @@ let createMedicalAdviseDetail = (medicalAdvise) => {
 			answersContent.appendChild(answerRow);
 		}
 	} else{
-		let content = "Your question are was sent";
+		let content = "Your question was sent";
 		if(medicalAdvise && medicalAdvise.assignedTo && medicalAdvise.assignedTo.name)
 			content += " to Dr. "  + medicalAdvise.assignedTo.name;
 		content += "! Please patiently wait for the answer.";
@@ -156,6 +115,7 @@ let createMedicalAdviseDetail = (medicalAdvise) => {
 }
 
 let displayMedicalAdvises = (listMedicalAdvisesArray) => {
+	$("#medical-advises-list").empty();
 	for(let i=0; i<listMedicalAdvisesArray.length; i++){
 		let medicalAdvise = listMedicalAdvisesArray[i];
 		let medicalAdviseItem = document.createElement("div");
@@ -179,10 +139,96 @@ let displayMedicalAdvises = (listMedicalAdvisesArray) => {
 		col_detail.appendChild(medicalAdviseDetailContainer);
 		medicalAdviseItem.appendChild(col_detail);
 
-		$("#medical-advises").append(medicalAdviseItem);
+		$("#medical-advises-list").append(medicalAdviseItem);
 	}
 }
 
+let createAdvise = () => {
+	let new_advise_category = $("#medical-advises input[name='new_advise_category']").val();
+	let new_advise_content = $("#medical-advises textarea[name='new_advise_content']").val();
+
+	if(!new_advise_category 
+		|| !_.isString(new_advise_category) 
+		|| new_advise_category.trim()==""){
+		
+		$("#create_advise_error").html("Enter category");
+		return false;
+
+	}
+
+	if(!new_advise_content
+		|| !_.isString(new_advise_content) 
+		|| new_advise_content.trim()==""){
+		
+		$("#create_advise_error").html("Enter content");
+		return false;
+
+	}
+	
+	let value = {
+		category: new_advise_category,
+		content: new_advise_content
+	}
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/patient/medical_advises/create',
+	    	type: "post",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    data : JSON.stringify(value),
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('patient-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		console.log(result);
+	    		displayMedicalAdvises(result);
+	    		$("#medical-advises input[name='new_advise_category']").val("");
+	    		$("#medical-advises textarea[name='new_advise_content']").val("");
+	    		// $("#create_new_patient_success").html("Patient with username " +
+	    		// 	result.username + " and password " + result.password 
+	    		// 	+ " is created. They now can log in and change their password");
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#create_advise_error").html("There is something wrong, please try sign out and sign in again ");
+	    	}
+	    });
+
+	} else {
+		$("#create_advise_error").html("There is something wrong, please try sign out and sign in again ");
+	}
+	return false;
+}
+let getPatientMedicalAdvises = () => {
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/patient/medical_advises',
+	    	type: "get",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('patient-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		if(result.length<=0){
+	    			$("#medical-advises-list").html("<h3>No advises asked.</h3>");
+	    		} else
+	    			displayMedicalAdvises(result);
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-advises-list").html("<h3>"+err.responseJSON.message+"</h3>");
+	    	}
+	    });
+
+	} else {
+		$("#medical-advises-list").html("<h3>There is something wrong, please try sign out and sign in again </h3>");
+	}
+}
 $(document).ready(function() {
   /*
 	call api get medical_advises
@@ -190,18 +236,6 @@ $(document).ready(function() {
   console.log(user);
   $("#patient_navbar li.active").removeClass("active");
   $("#navbar_medicaladvises").addClass("active");
-  let listMedicalAdvisesArray = []
-  let listMedicalAdvisesIds = Object.keys(mecialAdvises_dumb_data);
-  for(let i =0; i<listMedicalAdvisesIds.length; i++){
-  	let medical_advise = mecialAdvises_dumb_data[listMedicalAdvisesIds[i]];
-  	medical_advise.id = listMedicalAdvisesIds[i];
-  	listMedicalAdvisesArray.push(medical_advise);
-  }
-
-  listMedicalAdvisesArray = _.sortBy(listMedicalAdvisesArray, (advise) => {
-  	return -advise.date
-  });
-
-  displayMedicalAdvises(listMedicalAdvisesArray);
+  getPatientMedicalAdvises();
 });
 

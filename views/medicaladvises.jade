@@ -6,13 +6,49 @@ block content
 			var view = '#{view}';
 	if scriptLink
 		script(src='#{scriptLink}')
-	ul.nav.nav-tabs#patient_navbar
-		li
-			a(href='/') Overview
-		li
-			a(href='/medicalrecords') Medical Records
-		li#navbar_medicaladvises
-			a(href='/medicaladvises') Medical Advises
-		li
-			a(href='#menu3') Personal Profile
+	if user && user.role=='doctor'
+		ul.nav.nav-tabs#patient_navbar
+			li
+				a(href='/') Overview
+			li#navbar_medicalrecords
+				a(href='/medicalrecords') Medical Records
+			li#navbar_medicaladvises
+				a(href='/medicaladvises') Medical Advises
+			li
+				a(href='/patient') Personal Profile
+	else
+		ul.nav.nav-tabs#patient_navbar
+			li
+				a(href='/') Overview
+			li#navbar_medicalrecords
+				a(href='/medicalrecords') Medical Records
+			li#navbar_medicaladvises
+				a(href='/medicaladvises') Medical Advises
+			li
+				a(href='/patient') Personal Profile
 	#medical-advises
+		#medical-advises-list
+		if user && user.role=='patient'
+			.item
+				.col-xs-offset-2.col-xs-10
+					.details
+						.panel.panel-default
+							.panel-heading
+							.panel-body
+								.row
+									.col-xs-2
+										| Category:
+									.col-xs-10
+										input(type='text', name='new_advise_category', value='')
+								.row
+									.col-xs-2
+										| Content:
+									.col-xs-10
+										textarea(name="new_advise_content", cols="40", rows="5")
+								.row
+									#create_advise_error
+								.row
+									.col-xs-4.col-xs-offset-8
+										button( onclick='createAdvise()')
+											| Ask
+							.panel-footer

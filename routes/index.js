@@ -49,8 +49,8 @@ router.get('/', function(req, res, next) {
 			}
 			body.role=ehealth_role;
 			req.session.user = body;
-			res.cookie('ehealth_id',body._id, { maxAge: 900000 });
-			res.cookie('ehealth_role',body.role, { maxAge: 900000 });
+			res.cookie('ehealth_id',body._id);
+			res.cookie('ehealth_role',body.role);
 		  	res.render('index', { 
 		  		title: 'Home', 
 		  		scriptLink: 'javascripts/scripts.js', 
@@ -62,8 +62,8 @@ router.get('/', function(req, res, next) {
 	} else{
 
 		let user = req.session.user;
-		res.cookie('ehealth_id',user._id, { maxAge: 900000 });
-		res.cookie('ehealth_role',user.role, { maxAge: 900000 });
+		res.cookie('ehealth_id',user._id);
+		res.cookie('ehealth_role',user.role);
 	  	res.render('index', { 
 	  		title: 'Home', 
 	  		scriptLink: 'javascripts/scripts.js', 

@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
+var constanst =require('../common/constanst');
+var request = require('request');
 const url = require('url'); 
 
 /* GET medical records page in doctor view. */
@@ -47,15 +49,15 @@ router.get('/', function(req, res, next) {
 			}
 			body.role=ehealth_role;
 			req.session.user = body;
-			res.cookie('ehealth_id',body._id, { maxAge: 900000});
-			res.cookie('ehealth_role',body.role, { maxAge: 900000});
-			if(ehealth_role!="doctor"){
-				res.redirect(url.format({
-					pathname:"/",
-					query: {}
-				}));
-				return;
-			}
+			res.cookie('ehealth_id',body._id);
+			res.cookie('ehealth_role',body.role);
+			// if(ehealth_role!="doctor"){
+			// 	res.redirect(url.format({
+			// 		pathname:"/",
+			// 		query: {}
+			// 	}));
+			// 	return;
+			// }
 		  	res.redirect(url.format({
 		  		pathname:"/patient",
 		  		query: {}
@@ -65,18 +67,20 @@ router.get('/', function(req, res, next) {
 
 	} else {
 		let user = req.session.user;
-		if(user.role!='doctor'){
-			res.redirect(url.format({
-				pathname:"/",
-				query: {}
-			}));
+		if(user.role=='doctor'){
+			res.render('patient', {
+				scriptLink: '/javascripts/routes/patient.js',
+				title: 'Personal Info', 
+				user: req.session.user,
+				view: "patient_list"
+			});
 			return;
 		}
 	  	res.render('patient', {
 	  		scriptLink: '/javascripts/routes/patient.js',
 	  		title: 'Patient Info', 
 	  		user: req.session.user,
-	  		view: "record_detail"
+	  		view: "personal_info"
 	  	});
 	}
 	
@@ -125,15 +129,8 @@ router.get('/detail', function(req, res, next) {
 			}
 			body.role=ehealth_role;
 			req.session.user = body;
-			res.cookie('ehealth_id',body._id, { maxAge: 900000 });
-			res.cookie('ehealth_role',body.role, { maxAge: 900000 });
-			if(ehealth_role!="doctor"){
-				res.redirect(url.format({
-					pathname:"/",
-					query: {}
-				}));
-				return;
-			}
+			res.cookie('ehealth_id',body._id);
+			res.cookie('ehealth_role',body.role);
 
 		  	res.redirect(url.format({
 		  		pathname:"/patient/detail",
@@ -146,7 +143,7 @@ router.get('/detail', function(req, res, next) {
 		let user = req.session.user;
 		if(user.role!='doctor'){
 			res.redirect(url.format({
-				pathname:"/",
+				pathname:"/patient",
 				query: {}
 			}));
 			return;
@@ -155,7 +152,7 @@ router.get('/detail', function(req, res, next) {
 	  		scriptLink: '/javascripts/routes/patient.js',
 	  		title: 'Patient Info', 
 	  		user: req.session.user,
-	  		view: "record_detail"
+	  		view: "patient_detail"
 	  	});
 	}
 	

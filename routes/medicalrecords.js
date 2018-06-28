@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
+var constanst =require('../common/constanst');
+var request = require('request');
 const url = require('url'); 
 
 /* GET medical records page in doctor view. */
@@ -47,8 +49,8 @@ router.get('/', function(req, res, next) {
 			}
 			body.role=ehealth_role;
 			req.session.user = body;
-			res.cookie('ehealth_id',body._id, { maxAge: 900000 });
-			res.cookie('ehealth_role',body.role, { maxAge: 900000 });
+			res.cookie('ehealth_id',body._id);
+			res.cookie('ehealth_role',body.role);
 		  	res.redirect(url.format({
 		  		pathname:"/medicalrecords",
 		  		query: {}
@@ -120,8 +122,8 @@ router.get('/detail', function(req, res, next) {
 			}
 			body.role=ehealth_role;
 			req.session.user = body;
-			res.cookie('ehealth_id',body._id, { maxAge: 900000 });
-			res.cookie('ehealth_role',body.role, { maxAge: 900000 });
+			res.cookie('ehealth_id',body._id);
+			res.cookie('ehealth_role',body.role);
 		  	res.redirect(url.format({
 		  		pathname:"/medicalrecords/detail",
 		  		query: {}
@@ -191,8 +193,8 @@ router.get('/create', function(req, res, next) {
 			}
 			body.role=ehealth_role;
 			req.session.user = body;
-			res.cookie('ehealth_id',body._id, { maxAge: 900000 });
-			res.cookie('ehealth_role',body.role, { maxAge: 900000 });
+			res.cookie('ehealth_id',body._id);
+			res.cookie('ehealth_role',body.role);
 		  	res.redirect(url.format({
 		  		pathname:"/medicalrecords/create",
 		  		query: {}

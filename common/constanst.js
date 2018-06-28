@@ -1,2 +1,2 @@
-exports.backendURL = "http://localhost:4000"
+exports.backendURL = "https://ehealth-server.herokuapp.com"
 

@@ -1,120 +1,4 @@
 var allergie_severity = [ "Moderate", "Moderate to severe", "Severe"];
-var medicalRecords_doctor_list_dumb_data = [
-	{
-		patient: {
-			id: "fsdkkwe239",
-			first_name: "Giacomo",
-			last_name: "Guilizzoni"
-		},
-		created_at: 1525859932000,
-		updated_at: 1525859932000,
-		created_by:{
-			id: "fsdfewwej",
-			first_name: "Tam",
-			last_name: "Nguyen",
-			speciality: "Orthodontic"
-		}
-	},
-	{
-		patient: {
-			id: "fsdkkwe239",
-			first_name: "Hung",
-			last_name: "Nguyen"
-		},
-		created_at: 1525859932000,
-		updated_at: 1525859932000,
-		created_by:{
-			id: "fsdfewwej",
-			first_name: "Tam",
-			last_name: "Nguyen",
-			speciality: "Orthodontic"
-		}
-	},
-	{
-		patient: {
-			id: "fsdkkwe239",
-			first_name: "Lam",
-			last_name: "Nguyen"
-		},
-		created_at: 1525859932000,
-		updated_at: 1525859932000,
-		created_by:{
-			id: "fsdfewwej",
-			first_name: "Tam",
-			last_name: "Nguyen",
-			speciality: "Orthodontic"
-		}
-	}
-]
-var mecialRecords_dumb_data = {
-	patient_info: {
-		id: "fsdkkwe239",
-		first_name: "Giacomo",
-		last_name: "Guilizzoni"
-	},
-	allergies: [
-		{
-			name:"Bee Stings",
-			reaction: "Anaphylactic Shock",
-			severity: "Severe"
-		},
-		{
-			name:"Penicillin",
-			reaction: "Hives",
-			severity: "Moderate to severe"
-		},
-		{
-			name:"Codeine",
-			reaction: "Shortness of Breath",
-			severity: "Moderate"
-		}
-	],
-	immunizations: [
-		{
-			name:"Inﬂuenza virus vaccine, IM",
-			date: "May 2001",
-			type: "Intramuscular injection",
-			dose: "50 /mcg",
-			instructions: "Possible ﬂu-like symptoms for three days"
-		},
-		{
-			name:"Tetanus and diphtheriatoxoids, IM",
-			date: "April 2000",
-			type: "Intramuscular injection",
-			dose: "50 /mcg",
-			instructions: "Mild pain or soreness in the local area"
-		},
-	],
-	procedures: [
-		{
-			procedure: "Laparoscopic Cholecystectomy",
-			date: "September 28, 2002",
-			provider: "Dr. Bala Venktaraman",
-			address: "Ashby Medical Center",
-		}, 
-		{
-			procedure: "Cesarian Section",
-			date: "March 22, 2002",
-			provider: "Dr. Tiffany Martinez",
-			address: "Ashby Medical Center",
-		}
-	],
-	lab_results: [],
-	problem_list: [
-		{
-			observation: "Ankle Sprain",
-			status: "Active",
-			date: "March 28, 2005",
-			comments: "Slipped on ice and fell" 
-		},
-		{
-			observation: "Cholecystitis",
-			status: "Resolved",
-			date: "September 28, 2002",
-			comments: "Surgery postponed until after delivery" 
-		}
-	]
-}
 
 /******************************************************************
 *********************** Display medical records *******************
@@ -223,6 +107,9 @@ let displayAllergies = (allergies) => {
 				reaction: allergie_reaction,
 				severity: allergie_severity
 			}
+			updateMedicalRecord({
+				allergies: allergies
+			});
 			// to do: update new allergies list on server
 		}
 		let allergieButtonList = document.createElement("div");
@@ -251,7 +138,7 @@ let displayAllergies = (allergies) => {
 		deleteButton.innerHTML = "<span class='glyphicon glyphicon-trash'></span>";
 		deleteButton.addEventListener("click", () => {
 			deleteAllergie();
-			displayAllergies(allergies);
+			// displayAllergies(allergies);
 		})
 		deleteButtonContainer.appendChild(deleteButton);
 		allergieButtonList.appendChild(deleteButtonContainer);
@@ -275,10 +162,10 @@ let displayAllergies = (allergies) => {
 
 let addNewAllergie = () => {
 	//after this I need an API for submit new allergie
-	let { allergies } = mecialRecords_dumb_data;
-	if(!allergies){
-		allergies = [];
-	}
+	// let { allergies } = mecialRecords_dumb_data;
+	// if(!allergies){
+	// 	allergies = [];
+	// }
 	let new_allergie_name = $("#allergie-form input[name='new_allergie_name']").val();
 	let new_allergie_reaction = $("#allergie-form input[name='new_allergie_reaction']").val();
 	let new_allergie_severity = $("#allergie-form select[name='new_allergie_severity']").val();
@@ -427,6 +314,9 @@ let displayImmunizations = (immunizations) => {
 				dose: immunization_dose,
 				instructions: immunization_instructions
 			}
+			updateMedicalRecord({
+				immunizations: immunizations
+			});
 			// to do: update new allergies list on server
 		}
 		let immunizationButtonList = document.createElement("div");
@@ -455,7 +345,7 @@ let displayImmunizations = (immunizations) => {
 		deleteButton.innerHTML = "<span class='glyphicon glyphicon-trash'></span>";
 		deleteButton.addEventListener("click", () => {
 			deleteImmunization();
-			displayImmunizations(immunizations);
+			// displayImmunizations(immunizations);
 		})
 		deleteButtonContainer.appendChild(deleteButton);
 		immunizationButtonList.appendChild(deleteButtonContainer);
@@ -468,10 +358,10 @@ let displayImmunizations = (immunizations) => {
 
 let addNewImmunization = () => {
 	//after this I need an API for submit new allergie
-	let { immunizations } = mecialRecords_dumb_data;
-	if(!immunizations){
-		immunizations = [];
-	}
+	// let { immunizations } = mecialRecords_dumb_data;
+	// if(!immunizations){
+	// 	immunizations = [];
+	// }
 	let new_immunization_name = $("#immunization-form input[name='new_immunization_name']").val();
 	let new_immunization_date = $("#immunization-form input[name='new_immunization_date']").val();
 	let new_immunization_type = $("#immunization-form input[name='new_immunization_type']").val();
@@ -630,6 +520,9 @@ let displayProcedures = (procedures) => {
 				provider: procedure_provider,
 				address: procedure_address
 			}
+			updateMedicalRecord({
+				procedures: procedures
+			});
 			// to do: update new allergies list on server
 		}
 		let procedureButtonList = document.createElement("div");
@@ -658,7 +551,7 @@ let displayProcedures = (procedures) => {
 		deleteButton.innerHTML = "<span class='glyphicon glyphicon-trash'></span>";
 		deleteButton.addEventListener("click", () => {
 			deleteProcedures();
-			displayProcedures(procedures);
+			// displayProcedures(procedures);
 		})
 		deleteButtonContainer.appendChild(deleteButton);
 		procedureButtonList.appendChild(deleteButtonContainer);
@@ -671,10 +564,10 @@ let displayProcedures = (procedures) => {
 
 let addNewProcedure = () => {
 	//after this I need an API for submit new allergie
-	let { procedures } = mecialRecords_dumb_data;
-	if(!procedures){
-		procedures = [];
-	}
+	// let { procedures } = mecialRecords_dumb_data;
+	// if(!procedures){
+	// 	procedures = [];
+	// }
 	let new_procedure_name = $("#procedure-form input[name='new_procedure_name']").val();
 	let new_procedure_date = $("#procedure-form input[name='new_procedure_date']").val();
 	let new_procedure_provider = $("#procedure-form input[name='new_procedure_provider']").val();
@@ -823,6 +716,9 @@ let displayProblemsList = (problems) => {
 				date: problem_date,
 				comments: problem_comments
 			}
+			updateMedicalRecord({
+				problem_list: problems
+			});
 			// to do: update new allergies list on server
 		}
 		let problemButtonList = document.createElement("div");
@@ -851,7 +747,7 @@ let displayProblemsList = (problems) => {
 		deleteButton.innerHTML = "<span class='glyphicon glyphicon-trash'></span>";
 		deleteButton.addEventListener("click", () => {
 			deleteProblem();
-			displayProblemsList(problems);
+			// displayProblemsList(problems);
 		})
 		deleteButtonContainer.appendChild(deleteButton);
 		problemButtonList.appendChild(deleteButtonContainer);
@@ -864,10 +760,10 @@ let displayProblemsList = (problems) => {
 
 let addNewProblem = () => {
 	//after this I need an API for submit new allergie
-	let  problems  = mecialRecords_dumb_data.problem_list;
-	if(!problems){
-		problems = [];
-	}
+	// let  problems  = mecialRecords_dumb_data.problem_list;
+	// if(!problems){
+	// 	problems = [];
+	// }
 	let new_problem_observation = $("#problem-form input[name='new_problem_observation']").val();
 	let new_problem_status = $("#problem-form  input[name='new_problem_status']").val();
 	let new_problem_date = $("#problem-form  input[name='new_problem_date']").val();
@@ -1063,7 +959,7 @@ let getMedicalRecordDetail = (record_id) => {
 	    });
 
 	} else {
-		$("#medical-records-list").html("There is something wrong, please try sign out and sign in again ");
+		$("#medical-records").html("There is something wrong, please try sign out and sign in again ");
 	}
 }
 
@@ -1132,6 +1028,40 @@ let deleteMedicalRecord = (value) => {
 	}
 	return false;
 }
+
+let updateMedicalRecord = (value) => {
+	let record_id = getParameterByName('id')
+	if(getCookie("ehealth_id")){
+		$.ajax({
+	    	url: API_URL + '/medical_record/' + record_id +"/update",
+	    	type: "post",
+	    	dataType: 'json',
+	    	contentType: 'application/json',
+		    data : JSON.stringify(value),
+		    beforeSend: function(xhr){ 
+    			xhr.setRequestHeader('doctor-auth', getCookie("ehealth_id"));
+    		},
+	    	success: function( result ) {
+	    		console.log(result);
+	    		displayMedicalRecords(result);
+	    		// $("#create_new_patient_success").html("Patient with username " +
+	    		// 	result.username + " and password " + result.password 
+	    		// 	+ " is created. They now can log in and change their password");
+	    	},
+	    	error: function( err ) {
+	    		console.log( "ERROR:  " + JSON.stringify(err) );
+	    		console.log(err.responseJSON);
+	    		if(err.responseJSON && err.responseJSON.message)
+	    			$("#medical-records-list").html("There is something wrong, please try sign out and sign in again ");
+	    	}
+	    });
+
+	} else {
+		$("#medical-records-list").html("There is something wrong, please try sign out and sign in again ");
+	}
+	return false;
+}
+
 $(document).ready(function() {
   /*
 	call api get medical_records

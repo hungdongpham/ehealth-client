@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:4000";
+const API_URL = "https://ehealth-server.herokuapp.com";
 const HOST = "http://localhost:3000";
 function getCookie(name) {
 	var value = "; " + document.cookie;

@@ -32,7 +32,7 @@ block content
 			.row
 				a.btn(href='/patient/create')
 					| Create new patient
-			#patient-list
+			#patient-list(style='text-align:left')
 		if view && (view=='personal_info' || view=='patient_detail')
 			#personal-info
 		if view && view=='create_patient'

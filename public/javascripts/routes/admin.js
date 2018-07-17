@@ -25,11 +25,12 @@ let createNewDoctor = (event) => {
 	    	dataType: 'json',
 	    	contentType: 'application/json',
 		    data : JSON.stringify(data),
-		    beforeSend: function(xhr){ 
+		    beforeSend: function(xhr){
     			xhr.setRequestHeader('admin-auth', getCookie("ehealth_id"));
     		},
 	    	success: function( result ) {
-	    		$("#create_new_doctor_success").html("Patient with username " +
+	    		console.log(result);
+	    		$("#create_new_doctor_success").html("Doctor with username " +
 	    			result.username + " and password " + result.password 
 	    			+ " is created. They now can log in and change their password");
 	    	},

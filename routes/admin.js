@@ -109,6 +109,7 @@ router.get('/login', function(req, res, next) {
 			title: 'Login', 
 			scriptLink: 'javascripts/scripts.js', 
 			note: "You need to login to being ale to use the site"
+			view: "adminLogin"
 		});
 		return;
 	} 

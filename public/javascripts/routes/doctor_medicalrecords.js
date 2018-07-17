@@ -9,6 +9,7 @@ var allergie_severity = [ "Moderate", "Moderate to severe", "Severe"];
 
 let displayAllergies = (allergies) => {
 	$("#allergies-list").empty();
+	$("#allergie-form select[name='new_allergie_severity']").empty();
 	allergie_severity.map( (sev) => {
 		$("#allergie-form select[name='new_allergie_severity']").append("<option value='"+ sev +"''>"+ sev +"</option>");
 	})

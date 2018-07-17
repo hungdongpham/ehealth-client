@@ -64,6 +64,8 @@ router.get('/', function(req, res, next) {
 
 	} else {
 		let user = req.session.user;
+		res.cookie('ehealth_id',user._id);
+		res.cookie('ehealth_role',user.role);
 		if(user.role!='admin'){
 			res.redirect(url.format({
 		  		pathname:"/",
@@ -168,6 +170,8 @@ router.post('/login', function(req, res, next) {
 		}
 		body.role="admin";
 		req.session.user = body;
+		res.cookie('ehealth_id',body._id);
+		res.cookie('ehealth_role',body.role);
 		res.redirect(url.format({
 			pathname:"/admin",
 			query: {}

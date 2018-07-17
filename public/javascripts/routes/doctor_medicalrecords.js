@@ -1082,23 +1082,6 @@ $(document).ready(function() {
   	let record_id = getParameterByName('id')
   	getMedicalRecordDetail(record_id);
   	// displayMedicalRecords(mecialRecords_dumb_data);
-  }
-
-  if(view=="create_record"){
-  	mecialRecords_dumb_data = {
-  		patient: {
-  			id: "fsdkkwe239",
-  			first_name: "Giacomo",
-  			last_name: "Guilizzoni"
-  		},
-  		allergies: [],
-  		immunizations: [],
-  		procedures: [],
-  		lab_results: [],
-  		problem_list: []
-  	}
-  	displayMedicalRecords(mecialRecords_dumb_data);
-  }
-  
+  } 
 });
 

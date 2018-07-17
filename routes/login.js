@@ -93,6 +93,8 @@ router.post('/', function(req, res, next) {
 		}
 		body.role=role;
 		req.session.user = body;
+		res.cookie('ehealth_id',body._id);
+		res.cookie('ehealth_role',body.role);
 		res.redirect(url.format({
 			pathname:"/",
 			query: {}

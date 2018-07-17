@@ -1,4 +1,5 @@
 let createNewDoctor = (event) => {
+	console.log("create new doctor");
 	$("#create_new_doctor_error").html("");
 	$("#create_new_doctor_success").html("");
 	let form = event.target;
@@ -18,9 +19,11 @@ let createNewDoctor = (event) => {
 		hospital, mail, password, speciality, note
 	}
 
+	console.log(data);
+	console.log(getCookie("ehealth_id"))
 	if(getCookie("ehealth_id")){
 		$.ajax({
-	    	url: API_URL + '/doctor/create_patient',
+	    	url: API_URL + '/admin/create_doctor',
 	    	type: "post",
 	    	dataType: 'json',
 	    	contentType: 'application/json',
@@ -35,6 +38,7 @@ let createNewDoctor = (event) => {
 	    			+ " is created. They now can log in and change their password");
 	    	},
 	    	error: function( err ) {
+	    		console.log(err);
 	    		console.log( "ERROR:  " + JSON.stringify(err) );
 	    		console.log(err.responseJSON);
 	    		if(err.responseJSON && err.responseJSON.message)

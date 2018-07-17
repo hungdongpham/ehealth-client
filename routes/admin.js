@@ -3,6 +3,9 @@ var router = express.Router();
 var session = require('express-session');
 const url = require('url'); 
 var constanst =require('../common/constanst');
+var request = require('request');
+var async   = require('async');
+var _ = require("underscore");
 
 /* GET medical records page in doctor view. */
 
@@ -145,6 +148,7 @@ router.post('/login', function(req, res, next) {
 	}
 
 	let loginURL = constanst.backendURL + "/admin/signin";
+	console.log(loginURL);
 	request.post({
 		url: loginURL,
 		json: {
@@ -152,6 +156,7 @@ router.post('/login', function(req, res, next) {
 			password: password
 		}
 	}, function (err, response, body) {
+		console.log(response);
 		if(response.statusCode!=200 ){
 			let note = body.message || "There is something wrong. Try again later";
 			res.render('login', { 

@@ -16,6 +16,7 @@ var medicaladvises = require('./routes/medicaladvises');
 var medicalrecords = require('./routes/medicalrecords');
 var patient = require('./routes/patient');
 var login = require('./routes/login');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -41,7 +42,7 @@ app.use('/medicaladvises', medicaladvises);
 app.use('/medicalrecords', medicalrecords);
 app.use('/patient', patient);
 app.use('/login', login);
-
+app.use('/admin', admin);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

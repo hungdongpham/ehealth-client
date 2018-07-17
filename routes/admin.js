@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 	if(!req.session.user){
 		if(!req.cookies || !req.cookies.ehealth_id || !req.cookies.ehealth_role){
 			res.redirect(url.format({
-				pathname:"/login",
+				pathname:"/admin/login",
 				query: {
 					"redirect": true,
 				}

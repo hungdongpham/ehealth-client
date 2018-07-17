@@ -51,6 +51,13 @@ router.get('/', function(req, res, next) {
 			req.session.user = body;
 			res.cookie('ehealth_id',body._id);
 			res.cookie('ehealth_role',body.role);
+			if(body.role=="admin"){
+				res.redirect(url.format({
+				  	pathname:"/admin",
+				  	query: {}
+				}));
+				return;
+			}
 		  	res.render('index', { 
 		  		title: 'Home', 
 		  		scriptLink: 'javascripts/scripts.js', 
@@ -64,6 +71,13 @@ router.get('/', function(req, res, next) {
 		let user = req.session.user;
 		res.cookie('ehealth_id',user._id);
 		res.cookie('ehealth_role',user.role);
+		if(user.role=="admin"){
+			res.redirect(url.format({
+			  	pathname:"/admin",
+			  	query: {}
+			}));
+			return;
+		}
 	  	res.render('index', { 
 	  		title: 'Home', 
 	  		scriptLink: 'javascripts/scripts.js', 

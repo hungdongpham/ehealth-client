@@ -1,0 +1,96 @@
+extends primaryNavbar
+block content
+	if user
+		script(type='text/javascript').
+			var user = !{JSON.stringify(user)};
+			var view = '#{view}';
+	if scriptLink
+		script(src='#{scriptLink}')
+
+	#patient-page
+		if view && view=='patient_list'
+			.row
+				a.btn(href='/patient/create')
+					| Create new patient
+			#patient-list(style='text-align:left')
+		if view && view=='login'
+			.container#login-page
+				.row
+					h3 Sign in
+					form(action='/amin/login',method='post')
+						.form-group.row
+							.form-help
+								.col-sm-4.col-xs-4.col-sm-offset-4
+									| #{note}
+						.form-group.row
+							label.control-label.col-sm-1.col-sm-offset-3.col-xs-2.col-xs-offset-2(for='username') Username:
+							.col-sm-4.col-xs-4
+								input#username.form-control(name='username',type='text', placeholder='Enter username')
+						.form-group.row
+							label.control-label.col-sm-1.col-sm-offset-3.col-xs-2.col-xs-offset-2(for='pwd') Password:
+							.col-sm-4.col-xs-4
+								input#pwd.form-control(name='password',type='password', placeholder='Enter password')		
+						.form-group.row
+							.col-sm-offset-5.col-sm-2.col-xs-2.col-xs-offset-5
+								button.btn.btn-default(type='submit') Submit
+		if view && view=='create_patient'
+			h1 Create new patient
+			#create_new_patient_error
+			#create_new_patient_success
+			form(onsubmit='console.log(event); return createNewPatient(event)')
+				.col-xs-6
+					.row
+						.col-xs-3
+							| First name:
+						.col-xs-8
+							input(type='text', name='patient_fist_name', value='')
+					.row
+						.col-xs-3
+							| Tel:
+						.col-xs-8
+							input(type='number', name='patient_tel', value='')
+					.row
+						.col-xs-3
+							| Username
+						.col-xs-8
+							input(type='text', name='patient_username', value='')
+					.row
+						.col-xs-3
+							| Address
+						.col-xs-8
+							input(type='text', name='patient_address', value='')
+					.row
+						.col-xs-3
+							| Insurance
+						.col-xs-8
+							input(type='text', name='patient_insurance', value='')
+
+				.col-xs-6
+					.row
+						.col-xs-3
+							| Last name:
+						.col-xs-8
+							input(type='text', name='patient_last_name', value='')
+					.row
+						.col-xs-3
+							| Mail:
+						.col-xs-8
+							input(type='text', name='patient_mail', value='')
+					.row
+						.col-xs-3
+							| Password
+						.col-xs-8
+							input(type='text', name='patient_password', value='')
+					.row
+						.col-xs-3
+							| In case of emergency
+						.col-xs-8
+							input(type='text', name='patient_emergency', value='')
+					.row
+						.col-xs-3
+							| Notes
+						.col-xs-8
+							input(type='text', name='patient_note', value='')
+					.row
+						.col-xs-12
+							button.btn.btn-default(type='submit') Submit

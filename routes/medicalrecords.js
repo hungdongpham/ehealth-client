@@ -51,6 +51,14 @@ router.get('/', function(req, res, next) {
 			req.session.user = body;
 			res.cookie('ehealth_id',body._id);
 			res.cookie('ehealth_role',body.role);
+
+			if(body.role=="admin"){
+				res.redirect(url.format({
+				  	pathname:"/admin",
+				  	query: {}
+				}));
+				return;
+			}
 		  	res.redirect(url.format({
 		  		pathname:"/medicalrecords",
 		  		query: {}
@@ -60,6 +68,15 @@ router.get('/', function(req, res, next) {
 
 	} else {
 		let user = req.session.user;
+
+		if(user.role=="admin"){
+			res.redirect(url.format({
+			  	pathname:"/admin",
+			  	query: {}
+			}));
+			return;
+		}
+
 		if(user.role=='doctor'){
 			res.render('medicalrecords', { 
 				title: 'Doctor Medical Records', 
@@ -124,6 +141,15 @@ router.get('/detail', function(req, res, next) {
 			req.session.user = body;
 			res.cookie('ehealth_id',body._id);
 			res.cookie('ehealth_role',body.role);
+
+			if(body.role=="admin"){
+				res.redirect(url.format({
+				  	pathname:"/admin",
+				  	query: {}
+				}));
+				return;
+			}
+
 		  	res.redirect(url.format({
 		  		pathname:"/medicalrecords/detail",
 		  		query: {}
@@ -133,6 +159,15 @@ router.get('/detail', function(req, res, next) {
 
 	} else {
 		let user = req.session.user;
+
+		if(user.role=="admin"){
+			res.redirect(url.format({
+			  	pathname:"/admin",
+			  	query: {}
+			}));
+			return;
+		}
+
 		if(user.role!='doctor'){
 			res.redirect(url.format({
 				pathname:"/medicalrecords",
@@ -195,6 +230,15 @@ router.get('/create', function(req, res, next) {
 			req.session.user = body;
 			res.cookie('ehealth_id',body._id);
 			res.cookie('ehealth_role',body.role);
+
+			if(body.role=="admin"){
+				res.redirect(url.format({
+				  	pathname:"/admin",
+				  	query: {}
+				}));
+				return;
+			}
+
 		  	res.redirect(url.format({
 		  		pathname:"/medicalrecords/create",
 		  		query: {}
@@ -204,6 +248,15 @@ router.get('/create', function(req, res, next) {
 
 	} else {
 		let user = req.session.user;
+
+		if(user.role=="admin"){
+			res.redirect(url.format({
+			  	pathname:"/admin",
+			  	query: {}
+			}));
+			return;
+		}
+		
 		if(user.role!='doctor'){
 			res.redirect(url.format({
 				pathname:"/medicalrecords",
